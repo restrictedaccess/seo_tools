@@ -1,0 +1,189 @@
+<div class="row unprocessed-table-placeholder">
+	<div ng-show="remoteReadyCandidates.length <= 0 && remoteReadyCandidatesFetched === false">
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-success text-center" style="margin:0px;">
+                    Loading Remote Ready Candidates
+                </div>
+            </div>
+        </div>
+		
+	</div>
+    <div ng-show="remoteReadyCandidates.length <= 0 && remoteReadyCandidatesFetched === true">
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-danger text-center" style="margin:0px;">
+                    No results found.
+                </div>
+            </div>
+        </div>
+		
+	</div>
+	<table ng-show="remoteReadyCandidates.length > 0" class="table table-hover issue-tracker">
+
+		<thead>
+			<tr>
+				<th class="text-center" style="width:10%;">Avatar</th>
+				<th class="text-center" style="width:35%;">Candidate Details</th>
+				<th class="text-center" style="width:15%;">Contact Details</th>
+				<th class="text-center" style="width:20%;">Completion of Profile</th>
+				<th class="text-center" style="width:20%;">Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="candidate in remoteReadyCandidates">
+				<td class="text-center">
+				<ul class="list-unstyled" style="margin:0px;">
+					<li>
+						<img ng-if="candidate.hasImage() === false" height="48" width="48" alt="image" class="img-circle" src="/portal/images/Client.png" style="margin-bottom:10px;">
+						<img ng-if="candidate.hasImage() === true" height="48" width="48" alt="image" class="img-circle" ng-src="{{candidate.sce_image_path}}" style="margin-bottom:10px;">
+					</li>
+					<li>
+
+						<small ng-if="candidate.hasVoice() === false" class="text-danger"><b>no voice record</b></small>
+						<audio ng-if="candidate.hasVoice() === true" preload="none" controls="" style="width: 150px;">
+							<source ng-src="{{candidate.sce_voice_path}}">
+						</audio>
+
+					</li>
+					<li>
+
+						<button ng-click="moveToPrescreened(candidate)" type="button" class="btn btn-block btn-success btn-xs" style="margin: 0px 0px; padding: 4px 0px;">
+							<i class="fa fa-share"></i> Move to Pre-screened
+						</button>
+
+					</li>
+				</ul></td>
+				<td>
+				<ul class="list-unstyled" style="margin:0px;">
+					<li>
+						<small><strong>Candidate ID</strong>: <a href="/portal/recruiter/staff_information.php?userid={{candidate.getId()}}" target="_blank">#{{candidate.getId()}}</a></small>
+					</li>
+					<li>
+						<small><strong>Fullname</strong>: <a href="/portal/recruiter/staff_information.php?userid={{candidate.getId()}}" target="_blank">{{candidate.getName()}}</a></small>
+					</li>
+					<li>
+						<small ng-if="candidate.hasLatestJobTitle() === true"> <strong>Latest job title</strong>: <span> {{candidate.getLatestJobTitle()}} </span> </small>
+						<small ng-if="candidate.hasLatestJobTitle() === false">
+							<strong>Latest job title</strong>: 
+							<span>
+								<a ng-click="assignJobTitle(candidate)" recruiter class="text-danger">Assign job title</a>
+							</span>
+						</small>
+					</li>
+					<li>
+						<small ng-if="candidate.hasRecruiter() === false && current_logged_in_admin_id == 256">
+							<strong>Recruiter</strong>:
+							<span>
+								<a ng-click="reAssignCandidate(candidate)" class="text-danger" style="padding: 1px 5px; line-height: 0.2; font-size: 10px;">Assign this candidate</a>
+							</span>
+						</small>
+
+						<small ng-if="candidate.hasRecruiter() === false && current_logged_in_admin_id != 256">
+							<strong>Recruiter</strong>:
+							<span>
+								<a ng-click="getCandidate(candidate)" class="text-danger assign_recruiter_btn tooltip_instance" data-original-title="" title="">Get this candidate</a>												
+							</span>
+						</small>
+
+						
+						<small ng-if="candidate.hasRecruiter() === true && current_logged_in_admin_id == 256">
+							<strong>Recruiter</strong>:
+							<span>
+								{{candidate.getRecruiterName()}}
+							</span>
+							<a ng-click="reAssignCandidate(candidate)" data-toggle="tooltip" data-html="true" data-placement="bottom" title="" data-original-title="Re-assign candidate as head" class="btn btn-xs btn-primary tooltip_instance" style="padding: 1px 5px; line-height: 0.2; font-size: 10px;">
+								<i class="fa fa-exchange"></i>
+							</a>
+						</small>
+
+						<small ng-if="candidate.hasRecruiter() === true && current_logged_in_admin_id != 256"> 
+							<strong>Recruiter</strong>: 
+							<span> 
+								{{candidate.getRecruiterName()}}
+							</span> 
+							<a ng-click="reAssignCandidate(candidate)" data-toggle="tooltip" data-html="true" data-placement="bottom" title="" data-original-title="Re-assign to another recruiter" class="btn btn-xs btn-warning tooltip_instance" style="padding: 1px 5px; line-height: 0.2; font-size: 10px;">
+								<i class="fa fa-exchange"></i>
+							</a> 
+						</small>
+					</li>
+					<li>
+						<small><strong>Date registered</strong>: {{candidate.getDateRegistered()}}</small>
+					</li>
+					<li>
+						<small><strong>Date updated</strong>: {{candidate.getDateUpdated()}}</small>
+					</li>
+					<li>
+						<small><strong>Time lapse</strong>: {{candidate.getDayLapse()}}</small>
+					</li>
+				</ul></td>
+				<td>
+				<ul class="list-unstyled" style="margin:0px;">
+					<li>
+						<small><i class="fa fa-envelope-o"></i>: <a ng-click="instantEmail(candidate)" title="send instant email"> {{candidate.getEmail()}} </a> </small>
+					</li>
+					<li>
+						<small ng-if="candidate.getMobile()"><i class="fa fa-mobile"></i>:  {{candidate.getMobile()}} </small>
+						<small ng-if="!candidate.getMobile()"><i class="fa fa-mobile"></i>:  N / A </small>
+					</li>
+					<li>
+						<small ng-if="candidate.getSkype()"><i class="fa fa-skype"></i>:  {{candidate.getSkype()}} </small>
+						<small ng-if="!candidate.getSkype()"><i class="fa fa-skype"></i>:  N / A </small>
+					</li>
+				</ul></td>
+				<td class="text-center">
+					<pie-chart data="candidate.getProgress()" options="pietyChartOption.options"></pie-chart>
+					<br />
+					<small>{{candidate.getProfileCompletion()}}%</small>
+				</td>
+				<td class="text-center">
+					<ul class="list-unstyled" style="margin:0px;">
+						<li>
+							<button ng-click="addEvaluationComment(candidate)" type="button" class="btn btn-sm btn-success" style="margin: 2px 0px; padding: 4px 5px; width: 110px;">
+								<i class="fa fa-check-square-o"></i> Add Eval Note
+							</button>
+						</li>
+						<li>
+							<button ng-click="addCallNote(candidate)" type="button" class="btn btn-sm btn-warning" style="margin: 2px 0px; padding: 4px 5px; width: 110px;">
+								<i class="fa fa-phone"></i> Add Call Note
+							</button>
+						</li>
+						<li>
+							<div class="btn-group" style="display:inline-block;">
+								<button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 2px 0px; padding: 4px 5px; width: 110px;">
+									<i class="fa fa-minus-circle"></i> Inactive <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu inactive_action" data-userid="123254"> 
+									<li><a ng-click="moveToInactive(candidate, 'No Potential')">No Potential</a></li>
+									<li><a ng-click="moveToInactive(candidate, 'Not Interested')">Not Interested</a></li>
+									<li><a ng-click="moveToInactive(candidate, 'Not Ready')">Not Ready</a></li>
+									<li><a ng-click="moveToInactive(candidate, 'Blacklisted')">Blacklisted</a></li>
+									<li><a ng-click="moveToInactive(candidate, 'Incomplete Profile')">Incomplete Profile</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div ng-show="remoteReadyNumFound > 30 && remoteReadyCandidatesFetched === true">
+		<ul class="pagination">
+			<li ng-class="prevPageDisabledRemoteReady()">
+				<a href ng-click="prevPageRemoteReady()">« Prev</a>
+			</li>
+			<li ng-repeat="n in rangeRemoteReady()" ng-class="{active: n == currentPageRemoteReady}" ng-click="setPageRemoteReady(n)">
+				<a href="#">{{n+1}}</a>
+			</li>
+			<li ng-class="nextPageDisabledRemoteReady()">
+				<a href ng-click="nextPageRemoteReady()">Next »</a>
+			</li>
+		</ul>
+	</div>
+
+
+</div>

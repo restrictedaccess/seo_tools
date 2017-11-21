@@ -1,0 +1,52 @@
+<div class="modal fade in" id="inactive_candidate_form_modal" tabindex="-1" role="dialog"
+     aria-labelledby="inactive_candidate_form_modal_label"
+     aria-hidden="false" data-backdrop="static" style="display: block;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content animated flipInY">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h3 class="modal-title text-left">Inactive Candidate Note Form</h3>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h5 class="modal-title text-right" style="margin:2px 0px;">Candidate:
+                            #{{testdata}}{{candidate.id}}/{{candidate.first_name}} {{candidate.last_name}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-success" style="margin: 0px 0px 10px;">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                                        <h5 style="margin:4px 0px;">Please fill up inactive note</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body" style="padding:10px; margin:0px; width:100%;">
+                                <div class="form-group" style="margin:0px;">
+                                    <div summernote class="summernote" ng-model="moveInactiveNote" ng-change="checkInput()"
+                                         config="optionsInactiveNotes"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <input id="candidate_id" name="candidate_id" value="123363" type="hidden">
+                        <input id="reason" name="reason" value="Blacklisted" type="hidden">
+                        <input id="type" name="type" value="move_to_inactive" type="hidden">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button name="close" ng-click="closeModal()" id="close" type="button" class="btn btn-sm btn-danger"
+                        data-dismiss="modal"><i class="fa fa-times"></i> Close
+                </button>
+                <button name="inactive_candidate_save_changes" ng-click="saveMoveInactive()" ng-disabled="isSaveDisabled"
+                        id="inactive_candidate_save_changes" type="submit"
+                        class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save Inactive Candidate
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

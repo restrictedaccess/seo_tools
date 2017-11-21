@@ -1,0 +1,41 @@
+<div ng-controller="LoginController as login_view">
+
+    <div ng-show="!isLoggedIn" class="loginColumns animated fadeInDown">
+        <div class="row center-block m-b">
+            <div class="col-lg-6 col-lg-offset-3">
+                <a href="/">
+
+                    <img src="https://remotestaff.com.au/remotestaff_2015/img/rs-logo.png" style="width: 94%;">
+                </a>
+                <p class="logo-text">
+                    Relationships You Can Rely On
+                </p>
+            </div>
+        </div>
+        <div class="row center-block">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div class="ibox-content login-box">
+                    <form ng-submit="submitLoginForm()" id="admin-login-form" class="m-t" role="form" method="POST">
+                        <div class="form-group">
+                            <input ng-model="login.email" id="login-email" name="email" type="email" class="form-control" placeholder="Admin Email" required="">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="login.password" id="login-password" name="password" type="password" class="form-control" placeholder="Admin Password" required="">
+                        </div>
+                        <div ng-show="login.hasErrors()" class="form-group alert alert-danger text-center">
+                            <p ng-repeat="error in login.getErrors()">
+                                {{error}}
+                            </p>
+                        </div>
+                        <button type="submit" class="btn btn-success block full-width m-b">Login</button>
+                        <a ng-click="forgotPassword()">
+                            <small>Forgot password?</small>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

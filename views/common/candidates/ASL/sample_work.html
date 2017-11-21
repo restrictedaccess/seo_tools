@@ -1,0 +1,111 @@
+<div class="panel-body">
+    <div class="row" style="margin:0px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+            <div class="panel panel-success" style="margin: 0px;">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left">
+                            <h5 style="margin:4px 0px;">Sample works</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
+                            <button ng-show="add_sample_work === false" ng-click="showAddSampleWorkForm()" type="button" class="btn btn-xs btn-warning add_sample_work_btn">
+                                <i class="fa fa-plus"></i> Add sample work
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body" style="padding:10px; margin:0px; width:100%;">
+                    <div class="full-height-scroll" style="">
+
+                        <div ng-show="add_sample_work === true">
+                            <div class="text-right" style="margin: 5px 0px 15px;">
+                                <div class="row">
+                                    <div
+                                        ng-click="showSampleWorkType()"
+                                        class="col-lg-4" style="margin-top: 5px;">
+                                        File Type:
+                                    </div>
+                                    <div class="col-lg-5 text-left">
+
+                                        <select chosen class="chosen-select form-control"
+                                                data-placeholder="File Description"
+                                                ng-value="sample_work_selected.type"
+                                                ng-model="sample_work_selected.type"
+                                                ng-options="description as description.name for description in applicantFileDescriptions track by description.id">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button ng-click="uploadSampleWork(true)" class="btn btn-primary btn-xs upload_sample_work_btn" id="upload_sample_work_btn" data-candidate-id="{{candidate_id}}"> <i class="fa fa-upload"></i> Upload </button>
+                                        <button ng-click="cancelUploadSampleWork()" class="btn btn-danger btn-xs cancel_sample_work_btn" id="cancel_sample_work_btn" data-candidate-id="{{candidate_id}}"> <i class="fa fa-times"></i> Cancel </button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <form ng-if="sample_work_selected.type.id === 'SAMPLE WORK'" class="dropzone" drop-zone="config_dropzone_sample_work" >
+
+                            </form>
+
+
+                            <form ng-if="sample_work_selected.type.id === 'MOCK CALLS'" class="dropzone" drop-zone="config_dropzone_mock_call" >
+
+                            </form>
+
+
+                            <form ng-if="sample_work_selected.type.id === 'CHARACTER REFERENCE'" class="dropzone" drop-zone="config_dropzone_character_reference" >
+
+                            </form>
+
+
+                            <form ng-if="sample_work_selected.type.id === 'RESUME'" class="dropzone" drop-zone="config_dropzone_resume" >
+
+                            </form>
+
+
+                            <form ng-if="sample_work_selected.type.id === 'OTHER'" class="dropzone" drop-zone="config_dropzone_other" >
+
+                            </form>
+                        </div>
+
+
+                        <div ng-show="add_sample_work === false" id="sample_work_contrainer" class="table-responsive categorized_sample_work_data_placeholder">
+
+                            <table ng-show="candidate_to_create_resume.getApplicantFiles().length > 0" class="table table-striped table-bordered table-hover table-condensed" style="margin:0px;">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center" style="vertical-align: middle;">Name</th>
+                                    <th class="text-center" style="vertical-align: middle;">Type</th>
+                                    <th class="text-center" style="vertical-align: middle;">Date added</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody id="sample_work_categorized_placeholder">
+
+                                    <input  type="file" style="display: none;" id="sample_work_file_" name="sample_work_file_" src="" value="" />
+                                    <tr ng-repeat="(key, entry) in candidate_to_create_resume.applicantFiles" id="sample_work_" class="sample_work">
+                                        <td class="text-center" style="vertical-align: middle;"><input icheck ng-model="candidate_to_create_resume.applicantFiles[key].showToResume" name="resume[sample_work][]" type="checkbox" class=""  value=""" /></td>
+                                        <td style="vertical-align: middle;"><small>{{entry.getName()}}</small></td>
+                                        <td style="vertical-align: middle;"><small>{{entry.getFileDescription()}}</small></td>
+                                        <td class="text-center" style="vertical-align: middle;"><small>{{entry.getDateString()}}</small></td>
+                                        <td class="text-center"><button type="button" data-candidate-id="" data-file-id="" class="btn btn-danger btn-xs delete_sample_work_btn"><i class="fa fa-remove"></i></button></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div ng-show="candidate_to_create_resume.getApplicantFiles().length <= 0" class="alert alert-danger text-center" style="margin:0px;">
+                                <small>No sample work.</small>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<tabset>
+    <tab ng-click="showAdvancedFilters('unprocessed')">
+        
+        <tab-heading>
+            Unprocessed
+            <span class="badge badge-warning">{{unprocessedNumFound}}</span>
+        </tab-heading>
+
+        <div class="panel-body" ng-include="'views/common/candidates/unprocessed/search_result.html'">
+          
+        </div>
+    </tab>
+    <tab ng-click="showAdvancedFilters('remoteready')">
+        <tab-heading>
+            Profile Completion
+            <span class="badge badge-warning">{{remoteReadyNumFound}}</span>
+        </tab-heading>
+        <div class="panel-body" ng-include="'views/common/candidates/remote_ready/search_result.html'">
+        </div>
+    </tab>
+    <tab ng-click="showAdvancedFilters('prescreened')">
+        <tab-heading>
+            Pre Screened
+            <span class="badge" style="background-color:#EC6312; color:#ffffff;">{{prescreenedNumFound}}</span>
+        </tab-heading>
+        <div class="panel-body" ng-include="'views/common/candidates/prescreened/search_result.html'">
+        </div>
+    </tab>
+    <!--
+
+    <tab ng-click="showAdvancedFilters('shortlisted')" heading="Shortlisted">
+        <div class="panel-body">
+        </div>
+    </tab>
+    <tab ng-click="showAdvancedFilters('endorsed')" heading="Endorsed">
+        <div class="panel-body">
+        </div>
+    </tab>
+    <tab ng-click="showAdvancedFilters('interview')" heading="Interviewed">
+        <div class="panel-body">
+        </div>
+    </tab>
+    -->
+    <tab ng-click="showAdvancedFilters('asl')" heading="ASL">
+
+        <tab-heading>
+            ASL
+            <span class="badge">{{categorizedNumFound}}</span>
+        </tab-heading>
+        <div class="panel-body" ng-include="'views/common/candidates/ASL/search_result.html'">
+        </div>
+    </tab>
+    <tab ng-click="showAdvancedFilters('inactive')" class="m-l">
+        <tab-heading>
+            Unusable
+            <span class="badge badge-danger">{{inactiveNumFound}}</span>
+        </tab-heading>
+        <div class="panel-body" ng-include="'views/common/candidates/inactive/search_result.html'">
+        </div>
+    </tab>
+    
+    
+</tabset>

@@ -1,0 +1,78 @@
+<table class="table table-striped table-bordered table-hover table-condensed" style="margin:0px;">
+    <thead>
+    <tr>
+        <th colspan="3" class="text-center" style="vertical-align: middle;">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="text-right" style="vertical-align: middle;"><small><b>Gender</b>:</small></td>
+        <td style="vertical-align: middle;">
+            <select class="chosen-select-no-single form-control" data-placeholder="Gender"  ng-options="option.name as option.name for option in defaultData.genderOptions" ng-model="candidate.gender">
+            </select>
+        </td>
+        <td class="text-center" style="vertical-align: middle;">
+            <input icheck ng-model="details_personal_information.gender" name="resume[personal_information][gender]" type="checkbox" class=" form-control" >
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right" style="vertical-align: middle;"><small><b>Birthdate</b>:</small></td>
+        <td style="vertical-align: middle;"><small>
+            <input date-time  ng-model="candidate.birthDate" view="date" auto-close="true" min-view="date" format="YYYY-MM-DD" type="text" class="form-control datepicker-fulldate" value="" style="font-size: 10px;" placeholder="Birthday" />
+            <!--readonly="readonly"-->
+
+        </small></td>
+        <td class="text-center" style="vertical-align: middle;">
+            <small>
+                <input icheck ng-model="details_personal_information.birthdate" type="checkbox" class=" form-control" >
+            </small>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right" style="vertical-align: middle;"><small><b>Nationality</b>:</small></td>
+        <td style="vertical-align: middle;"><small>
+            <!--<input type="text" readonly="readonly" ng-model="candidate.nationality" class="form-control"/>-->
+            <select chosen class="chosen-select form-control"
+                    data-placeholder="Nationality"
+                    ng-model="candidate.nationality"
+                    ng-value="candidate.nationality"
+                    ng-options="country for country in countriesFilterDefaults track by country">
+
+            </select>
+        </small></td>
+        <td class="text-center" style="vertical-align: middle;">
+            <input icheck ng-model="details_personal_information.nationality"  type="checkbox" class=" form-control" >
+
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right" style="vertical-align: middle;"><small><b>Permanent Address</b>:</small></td>
+        <td style="vertical-align: middle;"><small>
+            <!--<input type="text" readonly="readonly" ng-model="candidate.permanentAddress" class="form-control"/>-->
+            <select chosen class="chosen-select form-control"
+                    data-placeholder="Permanent Address"
+                    ng-model="candidate.permanentResidenceObj"
+                    ng-value="candidate.permanentResidenceObj"
+                    ng-options="country as country.name for country in countriesSortNameFilterDefaults track by country.sortname">
+
+            </select>
+        </small></td>
+        <td class="text-center" style="vertical-align: middle;">
+            <input icheck ng-model="details_personal_information.permanent_address" type="checkbox" class="i-checks form-control" >
+
+        </td>
+    </tr>
+
+
+    <!--Dummy Button-->
+    <!--
+    <tr>
+        <td colspan="3" class="text-center" style="vertical-align: middle;">
+            <a ng-click="add_update_candidate_personal_info()" class="btn btn-sm btn-primary" style="margin:20px 0px 0px;"><i
+                            class="fa fa-share"></i> Add Personal Info</a>
+        </td>
+    <tr>
+    -->
+
+    </tbody>
+</table>

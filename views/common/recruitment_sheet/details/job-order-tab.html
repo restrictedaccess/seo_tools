@@ -1,0 +1,313 @@
+<div class="jo-status-box">
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5><i class="fa fa-user"></i> Job Order Details</h5>
+        <div class="ibox-tools">
+          <a class="" data-toggle="modal"  ng-click="openJobOrderDetails()">
+              <i class="fa fa-edit"></i>
+          </a>
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <table class="table">
+          <tr>
+              <th>Order Status: </th>
+              <td>{{edit_data.STATUS}}</td>
+          </tr>
+          <tr>
+              <th>Order In Age: </th>
+              <td>{{edit_data.business_days}} Day(s) </td>
+          </tr>
+          <tr>
+              <th>Date Last Contact: </th>
+              <td> </td>
+          </tr>
+          <tr>
+              <th>Date Last Updated: </th>
+              <td></td>
+          </tr>
+          <tr>
+              <th>Date Activated: </th>
+              <td> </td>
+          </tr>
+
+          <tr>
+              <th>Work Status: </th>
+              <td>{{edit_data.job_type_name}}</td>
+          </tr>
+          <tr>
+              <th>Timezone: </th>
+              <td>{{edit_data.timezone}}</td>
+          </tr>
+          <tr>
+              <th>Start Work Time: </th>
+              <td>{{edit_data.worktime_start}}</td>
+          </tr>
+          <tr>
+              <th>End Work Time: </th>
+              <td>{{edit_data.worktime_end}}</td>
+          </tr>
+          <tr>
+              <th>Budget: </th>
+              <td>{{edit_data.budget}}</td>
+          </tr>
+          <tr>
+              <th>Working Model: </th>
+              <td>{{edit_data.job_loc_name}}</td>
+          </tr>
+          <tr>
+              <th>Level Of Expertise: </th>
+              <td>{{edit_data.lvl_of_exprt}}</td>
+          </tr>
+
+          <tr>
+              <th>Assigned Recuiter: </th>
+              <td>{{edit_data.rec_name}} </td>
+          </tr>
+          <tr>
+              <th>Assigned Staffing Consultant: </th>
+              <td>{{edit_data.sc_name}} </td>
+          </tr>
+        </table>
+      </div>
+  </div>
+
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5><i class="fa fa-file"></i> Notes</h5>
+        <div class="ibox-tools">
+            <a class="" data-toggle="modal" data-target="#myJobOrderNotesEdit">
+                <i class="fa fa-edit"></i>
+            </a>
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">
+      <table class="table">
+        <thead>
+            <th>No.</th>
+            <th>Notes Details</th>
+            <th>Date Added</th>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>Dummy</td>
+            <td>2016-01-01</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Dummy</td>
+            <td>2016-01-01</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Dummy</td>
+            <td>2016-01-01</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Dummy</td>
+            <td>2016-01-01</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5><i class="fa fa-user"></i> Processed Candidates</h5>
+        <div class="ibox-tools">
+          <a class="">
+              <i class="fa fa-expand"></i>
+          </a>
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#shortlisted" data-toggle="tab"> Shortlisted</a></li>
+        <li><a href="#endorsed" data-toggle="tab">Endorsed</a></li>
+        <li><a href="#interviewed" data-toggle="tab">Interviewed</a></li>
+     </ul>
+      <div class="tab-content">
+        <div id="shortlisted" class="tab-pane fade in active">
+             <table class="table">
+                 <thead>
+                     <th>No.</th>
+                     <th>Name</th>
+                     <th>Date Added</th>
+                 </thead>
+                 <tr ng-repeat="a in shortlisted">
+                   <td>{{ a.num  }}</td>
+                   <td>{{ a.name  }}</td>
+                   <td>{{ a.date_added  }}</td>
+                 </tr>
+             </table>
+         </div>
+         <div id="endorsed" class="tab-pane fade">
+                <table class="table">
+                <thead>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Date Added</th>
+                </thead>
+                <tr>
+                    <td>1</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>2016-01-01</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>2016-01-01</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Juan Dela Cruz</td>
+                    <td>2016-01-01</td>
+                </tr>
+            </table>
+        </div>
+        <div id="interviewed" class="tab-pane fade">
+            <table class="table">
+              <thead>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Date Added</th>
+              </thead>
+              <tr>
+                  <td>1</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+            </table>
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#on_hold" data-toggle="tab">On Hold</a></li>
+        <li><a href="#hired" data-toggle="tab">Hired</a></li>
+        <li><a href="#on_trial" data-toggle="tab">On Trial</a></li>
+        <li><a href="#rejected_tab" data-toggle="tab">Rejected</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="on_hold" class="tab-pane fade in active">
+          <table class="table">
+              <thead>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Date Added</th>
+              </thead>
+              <tr>
+                  <td>1</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+          </table>
+        </div>
+        <div id="hired" class="tab-pane fade">
+          <table class="table">
+            <thead>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Date Added</th>
+            </thead>
+            <tr>
+                <td>1</td>
+                <td>Juan Dela Cruz</td>
+                <td>2016-01-01</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Juan Dela Cruz</td>
+                <td>2016-01-01</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Juan Dela Cruz</td>
+                <td>2016-01-01</td>
+            </tr>
+          </table>
+        </div>
+        <div id="on_trial" class="tab-pane fade">
+          <table class="table">
+              <thead>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Date Added</th>
+              </thead>
+              <tr>
+                  <td>1</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>Juan Dela Cruz</td>
+                  <td>2016-01-01</td>
+              </tr>
+          </table>
+        </div>
+        <div id="rejected_tab" class="tab-pane fade">
+          <table class="table">
+            <thead>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Date Added</th>
+            </thead>
+            <tr>
+                <td>1</td>
+                <td>Juan Dela Cruz</td>
+                <td>2016-01-01</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Juan Dela Cruz</td>
+                <td>2016-01-01</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Juan Dela Cruz</td>
+                <td>2016-01-01</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

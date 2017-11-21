@@ -1,0 +1,73 @@
+
+<div class="modal fade in" id="categorize_candidate_form_modal" tabindex="-1" role="dialog"
+     aria-labelledby="categorize_candidate_form_modal_label"
+     aria-hidden="false" data-backdrop="static" style="display: block;">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h3 class="modal-title text-left">Categorize Candidate Form</h3>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h5 class="modal-title text-right categorized_candidate_name_id_placeholder" style="margin:2px 0px;">
+                            Candidate: #{{candidate.getId()}}/{{candidate.getName()}}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <tabset active="1">
+                            <tab active="isStepOneActiveTab" select="showCategorizeTab('step1')">
+
+                                <tab-heading>
+                                    Step
+                                    <span class="badge badge-warning">1</span>
+                                </tab-heading>
+
+                                <div class="panel-body" ng-include="'views/common/candidates/ASL/categorize_step1.html'">
+
+                                </div>
+
+                            </tab>
+
+
+                            <tab active="isStepTwoActiveTab" select="showCategorizeTab('step2')">
+
+                                <tab-heading  >
+                                    Step
+                                    <span class="badge" style="background-color:#EC6312; color:#ffffff;">2</span>
+                                </tab-heading>
+
+                                <div class="panel-body" ng-include="'views/common/candidates/ASL/categorize_step2.html'">
+
+                                </div>
+
+                            </tab>
+
+                            <tab active="isStepThreeActiveTab" select="showCategorizeTab('step3')">
+
+                                <tab-heading>
+                                    Step
+                                    <span class="badge badge-success">3</span>
+                                </tab-heading>
+
+                                <div class="panel-body" ng-include="'views/common/candidates/ASL/categorize_step3.html'">
+
+                                </div>
+
+                                </div>
+
+                            </tab>
+                        </tabset>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

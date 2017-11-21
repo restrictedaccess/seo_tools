@@ -1,0 +1,129 @@
+<div class="modal fade in" id="prescreened_candidate_form_modal" tabindex="-1" role="dialog"
+     aria-labelledby="prescreened_candidate_form_modal_label" aria-hidden="false" data-backdrop="static"
+     style="display: block; max-height: 10;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h3 id="modal_header_title" class="modal-title text-left">Add Call Note</h3>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                        <h5 id="modal_header_sub_title" class="modal-title text-right" style="margin:2px 0px;">
+                            Candidate: #{{candidate_details.id}}/{{candidate_details.first_name}}
+                            {{candidate_details.last_name}}</h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <form action="/portal/v2/recruiter/candidates" enctype="multipart/form-data" method="post"
+                  id="prescreened_candidate_form" class="form-horizontal">
+                <div class="modal-body">
+
+                    <input id="candidate_id" name="candidate_id" value="123251" type="hidden">
+                    <input id="progress" name="progress" value="unprocess" type="hidden">
+                    <input id="table" name="table" value="unprocessed_staff" type="hidden">
+                    <input id="type" name="type" value="move_to_prescreened" type="hidden">
+                    <div class="prescreened_candidate_data_placeholder">
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="panel panel-success" style="margin: 0px 0px 10px;">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                                                <h5 style="margin:4px 0px;">Please fill up call note</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body" style="padding:10px; margin:0px; width:100%;">
+                                        <div class="form-group" style="margin:0px;">
+                                            <!--<textarea id="call_note" name="call_note" class="form-control" ng-model="callNoteModel" style="max-height:100px; min-height:100px;" ></textarea>-->
+                                            <div summernote class="summernote" ng-model="callNoteModel"
+                                                 config="optionsCallNotes" ng-change="checkInput()"></div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                                                    <button ng-click="save_modal_call_notes()"
+                                                            ng-disabled="isSaveDisabled"
+                                                            class="btn btn-xs btn-primary add_call_note_btn"
+                                                            type="button" style="margin:10px 0px;"><i
+                                                            class="fa fa-floppy-o"></i> Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="panel panel-success" style="margin: 0px; " data-spy="scroll"
+                                         class="scrollbar" id="style-default">
+                                        <div class="panel-heading">
+                                            <h5 style="margin:0px;">Call notes</h5>
+                                        </div>
+                                        <div class="panel-body dyn-height"
+                                             style="padding:10px; margin:0px; width:100%;"
+                                             class="force-overflow">
+                                            <!--<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%; ">-->
+                                            <div id="call_notes_container" class="full-height-scroll">
+
+                                                <div ng-repeat="n in tempNotes.slice().reverse()">
+
+
+                                                    <div class="panel panel-success">
+                                                        <div class="panel-body" style="padding:10px;">
+                                                            <div class="call_notes_content">
+                                                                <ul class="list-unstyled" style="margin:0px;">
+                                                                    <li>
+                                                                        <small><strong>Recruiter</strong>:
+                                                                            {{n.admin.name}}
+                                                                        </small>
+                                                                    </li>
+                                                                    <li>
+                                                                        <small><strong>Note</strong>: <span
+                                                                                ng-bind-html="to_trusted(n.notes)"> </span>
+                                                                        </small>
+                                                                    </li>
+                                                                    <li>
+                                                                        <small><strong>Date</strong>: {{n.date}}</small>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div ng-if="noNotesMsg">
+                                                    <div class="alert alert-danger" style="margin:0px;">
+                                                        <h5 class="text-center" style="margin: 0px;">Please add call
+                                                            note</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button ng-click="close_modal_call_notes()" name="close" id="close" type="button"
+                                    class="btn btn-sm btn-danger" data-dismiss="modal" style=""><i
+                                    class="fa fa-times"></i> Close
+                            </button>
+                        </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dyn-height {
+        width: 100px;
+        max-height: 250px;
+        overflow-y: auto;
+    }
+</style>

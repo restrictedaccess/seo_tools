@@ -1,0 +1,444 @@
+
+<div class="ibox-title">
+	<h5 ng-if="currentTab === 'unprocessed'" style="display: block;">Unprocessed Advanced Search</h5>
+	<h5 ng-if="currentTab === 'remoteready'" style="display: block;">Profile Completion Advanced Search</h5>
+	<h5 ng-if="currentTab === 'prescreened'" style="display: block;">Pre-Screened Advanced Search</h5>
+	<h5 ng-if="currentTab === 'asl'" style="display: block;">ASL Advanced Search</h5>
+	<h5 ng-if="currentTab === 'shortlisted'" style="display: block;">Shortlisted Advanced Search</h5>
+	<h5 ng-if="currentTab === 'endorsed'" style="display: block;">Endorsed Advanced Search</h5>
+	<h5 ng-if="currentTab === 'interview'" style="display: block;">Interview Advanced Search</h5>
+	<h5 ng-if="currentTab === 'inactive'" style="display: block;">Unusable Advanced Search</h5>
+	<div class="ibox-tools">
+		<a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
+	</div>
+</div>
+<div class="ibox-content m-b-sm border-bottom">
+	<!--CATEGORIZED SEARCH START -->
+
+
+	<div ng-if="currentTab === 'unprocessed'" id="categorized_search_row" class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date registered:</label>
+				<div>
+
+					<input type="text" ng-model="date_ranges.date_registered" date-range-picker placeholder="Registered Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+
+		<div id="date_updated_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_updated">
+				<label class="font-bold">Date updated:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_updated" date-range-picker placeholder="Date Updated" class="form-control">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="recruiter_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Recruiter:</label>
+				<select chosen ng-model="searchFormData.recruiter_assigned_id" data-placeholder="Recruiter" class="chosen-select recruiters-filter-placeholder candidates-filter form-control" style="display: block;"
+				ng-options="recruiter.id as recruiter.name for recruiter in recruitersFilterDefaults_filter">
+
+				</select>
+			</div>
+		</div>
+
+		<!--
+		<div id="date_progress_tagged_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date Tagged:</label>
+				<div>
+					<input type="text" ng-model="date_ranges.date_progress" date-range-picker placeholder="Date Tagged" class="form-control">
+				</div>
+			</div>
+		</div>
+		-->
+		
+	</div>
+
+
+
+
+
+	<div ng-if="currentTab === 'remoteready'" id="categorized_search_row" class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date registered:</label>
+				<div>
+
+					<input type="text" ng-model="date_ranges.date_registered" date-range-picker placeholder="Registered Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+
+		<div id="date_updated_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_updated">
+				<label class="font-bold">Date updated:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_updated" date-range-picker placeholder="Date Updated" class="form-control">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="recruiter_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Recruiter:</label>
+				<select chosen ng-model="searchFormData.recruiter_assigned_id" data-placeholder="Recruiter" class="chosen-select recruiters-filter-placeholder candidates-filter form-control" style="display: block;"
+				ng-options="recruiter.id as recruiter.name for recruiter in recruitersFilterDefaults_filter">
+				
+				</select>
+			</div>
+		</div>
+
+		<!--
+		<div id="date_progress_tagged_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date Tagged:</label>
+				<div>
+					<input type="text" ng-model="date_ranges.date_progress" date-range-picker placeholder="Date Tagged" class="form-control">
+				</div>
+			</div>
+		</div>
+		-->
+		
+	</div>
+
+
+
+
+
+
+	<div ng-if="currentTab === 'prescreened'" id="categorized_search_row" class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date registered:</label>
+				<div>
+
+					<input type="text" ng-model="date_ranges.date_registered" date-range-picker placeholder="Registered Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+
+		<div id="date_updated_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_updated">
+				<label class="font-bold">Date updated:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_updated" date-range-picker placeholder="Date Updated" class="form-control">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="recruiter_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Recruiter:</label>
+				<select chosen ng-model="searchFormData.recruiter_assigned_id" data-placeholder="Recruiter" class="chosen-select recruiters-filter-placeholder candidates-filter form-control" style="display: block;"
+				ng-options="recruiter.id as recruiter.name for recruiter in recruitersFilterDefaults_filter">
+				
+				</select>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div ng-if="currentTab === 'asl'" id="categorized_search_row" class="row">
+		<div id="category_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">Category:</label>
+				<select chosen class="chosen-select" data-placeholder="Category" ng-model="searchFormData.sub_category_id"
+					ng-options="category.sub_category_id as category.sub_category_name group by category.category_name for category in categoriesFilterDefaults">
+								
+				</select>   
+			</div>
+		</div>
+		<div id="on_asl_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">On ASL:</label>
+				<select chosen class="chosen-select" data-placeholder="Categorized on ASL" ng-model="searchFormData.categorized_on_asl">
+					<option value="" selected="selected">All</option>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+				
+			</div>
+		</div>
+		<div id="work_availability_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">Work availability:</label>
+				<select chosen class="chosen-select" data-placeholder="Work Availability" ng-model="searchFormData.categorized_work_availability">
+					<option value=""></option>
+					<option value="Full Time/Part Time">PT/FT</option>
+					<option value="Part Time">Part-time</option>
+					<option value="Full Time">Full-time</option>
+				</select>
+				
+			</div>
+		</div>
+		<div id="gender_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">Gender:</label>
+				<select chosen class="chosen-select" data-placeholder="Gender" ng-model="searchFormData.categorized_gender">
+					<option value=""></option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+		</div>
+		<div id="date_added_on_asl_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_added_on_asl">
+				<label class="font-bold">Date added on ASL:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_added_on_asl" date-range-picker placeholder="Added on ASL Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+		<div id="date_updated_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_updated">
+				<label class="font-bold">Date updated:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_updated" date-range-picker placeholder="Date Updated" class="form-control">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div ng-if="currentTab === 'inactive'" id="inactive_search_row" class="row">
+		
+		
+		<div id="date_inactive_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_inactive">
+				<label class="font-bold">Date inactive:</label>
+				<div>
+					<input type="text" ng-model="date_ranges.date_inactive" date-range-picker placeholder="Date Inactive" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+		
+
+		<div id="date_updated_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_updated">
+				<label class="font-bold">Date updated:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_updated" date-range-picker placeholder="Date Updated" class="form-control">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="recruiter_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Recruiter:</label>
+				<select chosen ng-model="searchFormData.recruiter_assigned_id" data-placeholder="Recruiter" class="chosen-select recruiters-filter-placeholder candidates-filter form-control" style="display: block;"
+				ng-options="recruiter.id as recruiter.name for recruiter in recruitersFilterDefaults_filter">
+				
+				</select>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	
+
+
+
+
+
+
+
+	<div ng-if="currentTab === 'temp'" id="categorized_search_row" class="row">
+		<div id="category_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">Category:</label>
+				<select chosen class="chosen-select" data-placeholder="Category" ng-model="searchFormData.sub_category_id"
+					ng-options="category.sub_category_id as category.sub_category_name group by category.category_name for category in categoriesFilterDefaults">
+								
+				</select>   
+			</div>
+		</div>
+		<div id="on_asl_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">On ASL:</label>
+				<select chosen class="chosen-select" data-placeholder="Categorized on ASL" ng-model="searchFormData.categorized_on_asl">
+					<option value="" selected="selected">All</option>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+				
+			</div>
+		</div>
+		<div id="work_availability_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">Work availability:</label>
+				<select chosen class="chosen-select" data-placeholder="Work Availability" ng-model="searchFormData.categorized_work_availability">
+					<option value=""></option>
+					<option value="Full Time/Part Time">PT/FT</option>
+					<option value="Part Time">Part-time</option>
+					<option value="Full Time">Full-time</option>
+				</select>
+				
+			</div>
+		</div>
+		<div id="gender_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="form-group">
+				<label class="font-bold">Gender:</label>
+				<select chosen class="chosen-select" data-placeholder="Gender" ng-model="searchFormData.categorized_gender">
+					<option value=""></option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+		</div>
+
+		
+		<div id="position_advertized_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Position Advertized:</label>
+				<select chosen ng-model="searchFormData.position_advertized_tracking_code" data-placeholder="Position Advertized" class="chosen-select position-advertized-filter-placeholder candidates-filter" style="display: block;"
+				ng-options="position.tracking_code as position.value for position in positionAdvertizedFilterDefaults">
+					
+				</select>
+				
+			</div>
+		</div>
+
+		<div id="recruiter_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Recruiter:</label>
+				<select chosen ng-model="searchFormData.recruiter_assigned_id" data-placeholder="Recruiter" class="chosen-select recruiters-filter-placeholder candidates-filter form-control" style="display: block;"
+				ng-options="recruiter.id as recruiter.name for recruiter in recruitersFilterDefaults_filter">
+				
+				</select>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date registered:</label>
+				<div>
+
+					<input type="text" ng-model="date_ranges.date_registered" date-range-picker placeholder="Registered Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+		<!--
+		<div id="date_progress_tagged_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date Tagged:</label>
+				<div>
+					<input type="text" ng-model="date_ranges.date_progress" date-range-picker placeholder="Date Tagged" class="form-control">
+				</div>
+			</div>
+		</div>
+		-->
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date shortlisted:</label>
+				<div>
+
+					<input type="text" ng-model="date_ranges.date_shortlisted" date-range-picker placeholder="Shortlisted Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group">
+				<label class="font-bold">Date endorsed:</label>
+				<div>
+
+					<input type="text" ng-model="date_ranges.date_endorsed" date-range-picker placeholder="Endorsement Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+		<div id="date_interview_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+
+			<div class="form-group">
+				<label class="font-bold">Scheduled Interview:</label>
+				<div>
+					<input type="text" ng-model="date_ranges.date_interview" date-range-picker placeholder="Interview Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+
+		<div id="date_added_on_asl_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_added_on_asl">
+				<label class="font-bold">Date added on ASL:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_added_on_asl" date-range-picker placeholder="Added on ASL Date" class="form-control">
+
+				</div>
+			</div>
+		</div>
+
+		<div id="date_updated_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_updated">
+				<label class="font-bold">Date updated:</label>
+
+				<div>
+					<input type="text" ng-model="date_ranges.date_updated" date-range-picker placeholder="Date Updated" class="form-control">
+				</div>
+			</div>
+		</div>
+
+		<div id="date_inactive_search" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="display: block;">
+			<div class="form-group" id="date_inactive">
+				<label class="font-bold">Date inactive:</label>
+				<div>
+					<input type="text" ng-model="date_ranges.date_inactive" date-range-picker placeholder="Date Inactive" class="form-control">
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-12 col-xs-12 text-right">
+			<button class="refresh-page-btn btn btn-sm btn-white" ng-click="refreshFilterSearch()">
+				<i class="fa fa-refresh"></i> Refresh
+			</button>
+			<button type="button" class="search_btn btn btn-sm btn-primary" ng-click="search()">
+				<i class="fa fa-search"></i> Search
+			</button>
+		</div>
+	</div>
+	<!--SEARCH BUTTON END-->
+</div>

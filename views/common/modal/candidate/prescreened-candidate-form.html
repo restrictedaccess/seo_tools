@@ -1,0 +1,121 @@
+
+<div class="modal fade in" id="prescreened_candidate_form_modal" tabindex="-1" role="dialog" aria-labelledby="prescreened_candidate_form_modal_label" aria-hidden="false" data-backdrop="static" style="display: block;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+
+
+			<div class="modal-header">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<h3 id="modal_header_title" class="modal-title text-left">Prescreen Candidate Form</h3>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+						<h5 id="modal_header_sub_title" class="modal-title text-right" style="margin:2px 0px;">Candidate: #{{candidate.id}}/{{candidate.first_name}} {{candidate.last_name}}</h5>
+					</div>
+				</div>
+			</div>
+
+
+
+			<form  method="post" id="prescreened_candidate_form" class="form-horizontal">
+
+				<div class="modal-body">
+
+					<input id="candidate_id" name="candidate_id" value="123254" type="hidden">
+					<input id="progress" name="progress" value="unprocess" type="hidden">
+					<input id="table" name="table" value="unprocessed_staff" type="hidden">
+					<input id="type" name="type" value="move_to_prescreened" type="hidden">
+					<div class="prescreened_candidate_data_placeholder">
+	<div class="row" style="margin:0px;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin:0px; padding:0px;">
+			<div class="panel panel-success" style="margin: 0px 0px 15px;">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left">
+							<h5 style="margin:4px 0px;">Please fill up evaluation note.</h5>
+						</div>
+						<div ng-show="!isUpdate" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
+							<button ladda="loading1" ng-click="addEval()" class="btn btn-xs btn-default add_evaluation_note_btn" data-is_prescreening="true" type="button" style="color:#000 !important;" ng-disabled="formData.eval_note_value === null"><i class="fa fa-plus"></i> Add evaluation note</button>
+							<a href="#" class="btn btn-xs btn-danger cancel_edit_evaluation_note_btn" style="display:none;"><i class="fa fa-times"></i> Cancel</a>
+						</div>
+
+						<div  ng-show="isUpdate" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
+							<button ladda="loading2" ng-click="updateEvalNotes()" class="btn btn-xs add_evaluation_note_btn btn-warning" data-is_prescreening="true" type="button" ng-disabled="formData.eval_note_value === null"><i class="fa fa-pencil"></i> Update</button>
+							<a ng-click="cancelUpdate()" class="btn btn-xs btn-danger cancel_edit_evaluation_note_btn"><i class="fa fa-times"></i> Cancel</a>
+						</div>
+
+
+					</div>
+				</div>
+				<div class="panel-body" style="padding:10px; margin:0px; width:100%;">
+					<div class="form-group" style="margin:0px;">
+
+
+						<div ng-change="checkifVal()" summernote class="summernote"  ng-model="formData.eval_note_value" config="optionsAddEval">
+						<!-- <textarea style="height: 300px;width: 100%;" ng-model="formData.eval_note_value"></textarea> -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div  id="evaluation_note_container" class="row " style="margin:0px;">
+		<div ng-show="!isUpdate" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin:0px; padding:0px;" >
+			<h4>Evaluation notes</h4>
+			<div id="evaluation_note_content" >
+				<ul ng-show="tempEvalNotes !== null" data-candidate-id="{{candidate.id}}" class="dragabblePannels" ui-sortable="sortableOptions" style="list-style-type:none;padding-left:0px;" ng-model="tempEvalNotes">
+						<li ng-repeat="tempnote in tempEvalNotes" id="endorse_comment_{{tempnote.id}}" class="panel panel-info evaluation_comment_prescreen" style="margin:0px 0px 10px;">
+							<input id="endorse_comment_ordering_{{tempnote.userid}}" name="endorse_comment_ordering" type="hidden" value="{{tempnote.ordering}}">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left dragHere">
+										<i class="fa fa-arrows"></i>
+
+
+
+
+										<small>You can drag this panel.</small>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
+										<a  rel="{{candidate.id}}" class="btn btn-xs btn-warning edit_evaluation_note_btn" ng-click="updateValue(tempnote)"><i class="fa fa-pencil"></i></a>
+										<a  rel="{{candidate.id}}" class="btn btn-xs btn-danger delete_evaluation_note_btn" ng-click="removeValue(tempnote)"><i class="fa fa-times"></i></a>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="panel-body" style="width: 100%; margin-left: 0%; font-size:10px;">
+								<strong>Evaluation Comment/Note:</strong> <span ng-bind-html="renderHtml(tempnote.comments)"></span><br><br>
+								<strong>Added by:</strong> {{tempnote.admin}}<br>
+								<strong>Date Added:</strong> {{tempnote.comment_date}}<br>
+
+							</div>
+						</li>
+				</ul>
+
+
+						<div ng-show="tempEvalNotes === null"  class="alert alert-danger" style="margin:0px;">
+							<h5 class="text-center" style="margin: 0px;">There's no Evaluation note</h5>
+					</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button ng-click="close_modal()" name="close" id="close" type="button" class="btn btn-sm btn-danger" data-dismiss="modal" style="display: inline-block;"><i class="fa fa-times"></i> Close</button>
+					<button ng-click="addToPrescreen(candidate)" name="prescreened_candidate_save_changes" id="prescreened_candidate_save_changes" class="btn btn-sm btn-primary" style="display: inline-block;"><i class="fa fa-floppy-o"></i> Move Candidate to Prescreen</button>
+
+
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

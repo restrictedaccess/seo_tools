@@ -1,0 +1,388 @@
+<style>
+
+    #site_map_list a:hover{
+        text-decoration: underline;
+    }
+
+    .font-bold-900{
+        font-weight: 900 !important;
+        font-size: 120% !important;
+        color: blue !important;
+    }
+</style>
+
+<div ng-controller="DashboardController as dashboard_view">
+    <div ng-show="isLoggedIn">
+
+        <div class="row  border-bottom white-bg dashboard-header">
+            <div class="col-sm-12">
+                <h1>Dashboard</h1>
+
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox">
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div id="site_map_list" class="panel-group">
+                                <div ng-show="urlList.length <= 0">
+
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-danger text-center" style="margin:0px;">
+                                            No Sitemap found.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="urlList.length > 0" class="" style="margin-bottom: 15px">
+                                    <!--<div class="panel-heading">-->
+                                        <!--<h4 class="panel-title">-->
+                                            <!--<a ng-click="toggleSearch()">-->
+                                                <!--Search Links-->
+                                                <!--<i ng-class="{'fa fa-chevron-right pull-right': showSearch() === true, 'fa fa-chevron-down pull-right': showSearch() === false}"></i>-->
+                                            <!--</a>-->
+                                        <!--</h4>-->
+                                    <!--</div>-->
+
+                                    <!--<div collapse="showSearch()" class="panel-body">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-lg-12">-->
+                                                <!--<input ng-model="search_urls" ng-change="searchUrls()" class="form-control" placeholder="Search Links" />-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+
+                                    <div class="ibox">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <input ng-model="search_urls" ng-change="searchUrls()" class="form-control" placeholder="Search Links" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div ng-show="search_urls == ''" ng-repeat="(key_url, url) in urlList" class="panel panel-default"  style="margin-top: 1%;">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a ng-click="selectUrl(url)" ng-class="urlIsSelected(url)">
+                                                {{url.getUri()}}
+                                                <i class="fa fa-chevron-right pull-right"></i>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div ng-show="search_urls != ''" ng-repeat="(key_url, url) in searchUrlList" class="panel panel-default"  style="margin-top: 1%;">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a ng-click="selectUrl(url)" ng-class="urlIsSelected(url)">
+                                                {{url.getUri()}}
+                                                <i class="fa fa-chevron-right pull-right"></i>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <div ng-show="selectedItem === null">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a class="btn btn-sm btn-success pull-right m-b m-r" ng-click="selectUrl(null)">
+                                            <i class="fa fa-plus "></i> Add Site
+                                        </a>
+                                        <label class="btn btn-primary btn-sm m-b m-r pull-right">
+                                            <i class="fa fa-upload"></i>  Upload CSV<input class="dropzone" drop-zone="config_dropzone_csv_upload" style="display:none; width: 100%;">
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div ng-show="selectedItem !== null">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a class="btn btn-sm btn-success pull-right m-b m-r" ng-click="selectUrl(null)">
+                                            <i class="fa fa-plus "></i> Add Site
+                                        </a>
+                                        <label class="btn btn-primary btn-sm m-b m-r pull-right">
+                                            <i class="fa fa-upload"></i>  Upload CSV<input class="dropzone" drop-zone="config_dropzone_csv_upload" style="display:none; width: 100%;">
+                                        </label>
+                                        <h3>
+                                            Site Link: {{selectedItem.getDisplayName()}}
+                                        </h3>
+                                        <small ng-show="selectedItem.getId() !== null" class="m-b">
+                                            Created by: {{selectedItem.getLastUpdatedByName()}}, last modified by {{selectedItem.getLastUpdatedByName()}} on {{selectedItem.getDateUpdated()}}
+                                        </small>
+                                        <!--<div  class="row">-->
+                                            <!--<div class="col-lg-4">-->
+                                                <!--<div class="row">-->
+                                                    <!--<div class="col-lg-12">-->
+                                                        <!--Date Updated: {{selectedItem.getDateUpdated()}}-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-lg-12">-->
+                                                        <!--Date Created: {{selectedItem.getDateCreated()}}-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-lg-5">-->
+                                                <!--<div class="row">-->
+                                                    <!--<div class="col-lg-12">-->
+                                                        <!--Last Updated by: {{selectedItem.getLastUpdatedByName()}}-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-lg-12">-->
+                                                        <!--Created by: {{selectedItem.getLastUpdatedByName()}}-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+
+                                <div class="ibox m-t">
+                                    <div class="ibox-content">
+                                        <form ng-submit="submitUrlForm()" name="url_form" class="form-horizontal m-t">
+                                            <div class="row">
+                                                <div class="col-lg-9">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Site Link:<span class="text-danger">*</span>
+
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <div class="input-group">
+                                                                        <input name="link" required type="text" ng-model="selectedItem.name" class="form-control" />
+                                                                        <a class="btn btn-sm btn-success input-group-addon" ng-click="parseUrl(selectedItem.name)">
+                                                                            <i class="fa fa-code"></i> Parse
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="row" ng-show="url_form.link.$valid == false">
+                                                                        <div class="col-lg-12">
+                                                                            <div  class="text-danger" style="margin:0px;">
+                                                                                Site Link is required
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Save Params:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+
+                                                                    <select chosen ng-model="selectedItem.save_params" data-placeholder="Save Link Paramater" class="chosen-select form-control" style="display: block;"
+                                                                            ng-options="yesNo for yesNo in yesNoList">
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Title / Meta Title:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.title" class="form-control" ng-change="limitTitle()" />
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 m-b">
+                                                                            {{chars_data_title.remaining}} characters remaining
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Status:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+
+                                                                    <select chosen ng-model="selectedItem.status" data-placeholder="Status" class="chosen-select form-control" style="display: block;"
+                                                                            ng-options="status for status in statusList">
+
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Redirects to:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.redirects_to" class="form-control" placeholder="http:// is important ex: http://remotestaff.com.au" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    PAGE H1:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.page_h1" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    PAGE H2:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.page_h2" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    PAGE H3:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.page_h3" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Meta Description:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<div summernote class="summernote"-->
+                                                                    <!--ng-model="selectedItem.metaDescription" config="optionSummernote">-->
+
+                                                                    <!--</div>-->
+                                                                    <textarea rows="8" cols="71" class="form-control"
+                                                                              ng-model="selectedItem.metaDescription" style="resize: none;"
+                                                                              ng-change="limitMetaDescription()">
+
+                                                                    </textarea>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 m-b">
+                                                                            {{words_data_meta_description.remaining}} words remaining
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Meta Keywords:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <textarea rows="8" cols="71" class="form-control"
+                                                                              ng-model="selectedItem.keywords" style="resize: none;">
+
+                                                                    </textarea>
+                                                                    <!--<div summernote class="summernote"-->
+                                                                    <!--ng-model="selectedItem.keywords" config="optionSummernote">-->
+
+                                                                    <!--</div>-->
+
+
+                                                                    <!--<textarea maxlength="160" rows="8" cols="71" class="form-control"-->
+                                                                    <!--ng-model="selectedItem.keywords" style="resize: none;"-->
+                                                                    <!--ng-change="limitKeywords()">-->
+
+                                                                    <!--</textarea>-->
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                        <div class="col-lg-12">
+                                                            <button type="submit" class="btn btn-primary pull-right">
+                                                                <i class="fa fa-save "></i> Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <toaster-container></toaster-container>
+
+    </div>
+</div>
+
+
+<!--<div ng-controller="DashboardController as dashboard_view">-->
+    <!--<div ng-show="isLoggedIn">-->
+
+        <!--<div class="row  border-bottom white-bg dashboard-header">-->
+            <!--<div class="col-sm-12">-->
+                <!--<h1>Dashboard</h1>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="wrapper wrapper-content animated fadeInRight">-->
+
+        <!--</div>-->
+
+        <!--<toaster-container></toaster-container>-->
+
+    <!--</div>-->
+<!--</div>-->
+

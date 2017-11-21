@@ -1,0 +1,682 @@
+<div class="col-lg-12">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>Job Order Details</h5>
+		</div>
+		<div class="ibox-content">
+			<div class="">
+
+				<div class="col-lg-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Job Order Details</div>
+						<div class="panel-body">
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-user"></i> Job Order Information</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+									<table class="table">
+											<tr>
+													<th>Date Submitted: </th>
+													<td>{{read_data.registration_dates}}</td>
+											</tr>
+											<tr>
+													<th>Job Title: </th>
+													<td> {{read_data.sub_category_name}}</td>
+											</tr>
+											<tr>
+													<th>Level Of Expertise: </th>
+													<td>{{read_data.lvl_of_exprt}}</td>
+											</tr>
+											<tr>
+													<th>Number Of Staff Needed: </th>
+													<td>{{read_data.num_staff_req}}</td>
+											</tr>
+											<tr>
+													<th>Budget: </th>
+													<td>{{read_data.budget}}</td>
+											</tr>
+											<tr>
+													<th>Working Model: </th>
+													<td>{{read_data.job_loc_name}}</td>
+											</tr>
+											<tr>
+													<th>Timezone: </th>
+													<td>{{read_data.timezone}}</td>
+											</tr>
+									</table>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-html5"></i> Required Skills</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+										<p>
+												{{read_data.required_skills}}
+										</p>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-check-circle"></i> Required Tasks</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+										<p>
+												{{read_data.responsibilities}}
+										</p>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-gift"></i> Personal Soft Skills</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+										<p>
+												{{read_data.personal_soft_skills}}
+										</p>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+									<div class="ibox-title">
+											<h5><i class="fa fa-graduation-cap"></i> Educational Experience</h5>
+											<div class="ibox-tools">
+													<a class="collapse-link">
+															<i class="fa fa-chevron-up"></i>
+													</a>
+											</div>
+									</div>
+									<div class="ibox-content">
+											<p>
+													{{read_data.educ_experience}}
+											</p>
+									</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+									<div class="ibox-title">
+											<h5><i class="fa fa-comments"></i> Additional Comments</h5>
+											<div class="ibox-tools">
+													<a class="collapse-link">
+															<i class="fa fa-chevron-up"></i>
+													</a>
+											</div>
+									</div>
+									<div class="ibox-content">
+											<p>
+													{{read_data.add_comments}}
+											</p>
+									</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<ul class="nav nav-tabs">
+							<li class="active"><a href="#jo_details" data-toggle="tab">  Job Order Details</a></li>
+							<li><a href="#convert_ad" data-toggle="tab">Create Ad</a></li>
+							<li><a href="#preview_ad" data-toggle="tab">Preview Ad</a></li>
+					 </ul>
+				</div>
+				<div class="col-lg-6 jo-status-box">
+					<div class="tab-content">
+
+						<div id="jo_details" class="tab-pane fade in active">
+							<div class="row">
+								<div class="ibox float-e-margins">
+									<div class="ibox-title">
+                      <h5><i class="fa fa-user"></i> Job Order Details</h5>
+                      <div class="ibox-tools">
+                        <a class="" data-toggle="modal"  ng-click="openJobOrderDetails()">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                          <a class="collapse-link">
+                              <i class="fa fa-chevron-up"></i>
+                          </a>
+                      </div>
+                  </div>
+									<div class="ibox-content">
+										<table class="table">
+											<tr>
+                          <th>Order Status: </th>
+                          <td>{{edit_data.STATUS}}</td>
+                      </tr>
+											<tr>
+                          <th>Order In Age: </th>
+                          <td>{{edit_data.business_days}} Day(s) </td>
+                      </tr>
+                      <tr>
+                          <th>Date Last Contact: </th>
+                          <td> </td>
+                      </tr>
+                      <tr>
+                          <th>Date Last Updated: </th>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <th>Date Activated: </th>
+                          <td> </td>
+                      </tr>
+
+                      <tr>
+                          <th>Work Status: </th>
+                          <td>{{edit_data.job_type_name}}</td>
+                      </tr>
+                      <tr>
+                          <th>Timezone: </th>
+                          <td>{{edit_data.timezone}}</td>
+                      </tr>
+                      <tr>
+                          <th>Start Work Time: </th>
+                          <td>{{edit_data.worktime_start}}</td>
+                      </tr>
+                      <tr>
+                          <th>End Work Time: </th>
+                          <td>{{edit_data.worktime_end}}</td>
+                      </tr>
+                      <tr>
+                          <th>Budget: </th>
+                          <td>{{edit_data.budget}}</td>
+                      </tr>
+                      <tr>
+                          <th>Working Model: </th>
+                          <td>{{edit_data.job_loc_name}}</td>
+                      </tr>
+                      <tr>
+                          <th>Level Of Expertise: </th>
+                          <td>{{edit_data.lvl_of_exprt}}</td>
+                      </tr>
+
+                      <tr>
+                          <th>Assigned Recuiter: </th>
+                          <td>{{edit_data.rec_name}} </td>
+                      </tr>
+                      <tr>
+                          <th>Assigned Staffing Consultant: </th>
+                          <td>{{edit_data.sc_name}} </td>
+                      </tr>
+										</table>
+									</div>
+								</div>
+
+								<div class="ibox float-e-margins">
+									<div class="ibox-title">
+                      <h5><i class="fa fa-file"></i> Notes</h5>
+                      <div class="ibox-tools">
+                          <a class="" data-toggle="modal" data-target="#myJobOrderNotesEdit">
+                              <i class="fa fa-edit"></i>
+                          </a>
+                          <a class="collapse-link">
+                              <i class="fa fa-chevron-up"></i>
+                          </a>
+                      </div>
+                  </div>
+									<div class="ibox-content">
+										<table class="table">
+											<thead>
+                          <th>No.</th>
+                          <th>Notes Details</th>
+                          <th>Date Added</th>
+                      </thead>
+											<tr>
+                          <td>1</td>
+                          <td>Dummy</td>
+                          <td>2016-01-01</td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td>Dummy</td>
+                          <td>2016-01-01</td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>Dummy</td>
+                          <td>2016-01-01</td>
+                      </tr>
+                      <tr>
+                          <td>4</td>
+                          <td>Dummy</td>
+                          <td>2016-01-01</td>
+                      </tr>
+										</table>
+									</div>
+								</div>
+
+								<div class="ibox float-e-margins">
+									<div class="ibox-title">
+                      <h5><i class="fa fa-user"></i> Processed Candidates</h5>
+                      <div class="ibox-tools">
+                        <a class="">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                          <a class="collapse-link">
+                              <i class="fa fa-chevron-up"></i>
+                          </a>
+                      </div>
+                  </div>
+									<div class="ibox-content">
+										<ul class="nav nav-tabs">
+                        <li class="active"><a href="#shortlisted" data-toggle="tab"> Shortlisted</a></li>
+                        <li><a href="#endorsed" data-toggle="tab">Endorsed</a></li>
+                        <li><a href="#interviewed" data-toggle="tab">Interviewed</a></li>
+                    </ul>
+										<div class="tab-content">
+											<div id="shortlisted" class="tab-pane fade in active">
+												<table class="table">
+                            <thead>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Date Added</th>
+                            </thead>
+                            <tr>
+                            </tr>
+                        </table>
+											</div>
+
+											<div id="endorsed" class="tab-pane fade">
+												<table class="table">
+                            <thead>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Date Added</th>
+                            </thead>
+                            <tr>
+                                <td>1</td>
+                                <td>Juan Dela Cruz</td>
+                                <td>2016-01-01</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Juan Dela Cruz</td>
+                                <td>2016-01-01</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Juan Dela Cruz</td>
+                                <td>2016-01-01</td>
+                            </tr>
+                        </table>
+											</div>
+
+											<div id="interviewed" class="tab-pane fade">
+												<table class="table">
+													<thead>
+                              <th>No.</th>
+                              <th>Name</th>
+                              <th>Date Added</th>
+                          </thead>
+													<tr>
+		                          <td>1</td>
+		                          <td>Juan Dela Cruz</td>
+		                          <td>2016-01-01</td>
+		                      </tr>
+		                      <tr>
+		                          <td>2</td>
+		                          <td>Juan Dela Cruz</td>
+		                          <td>2016-01-01</td>
+		                      </tr>
+		                      <tr>
+		                          <td>3</td>
+		                          <td>Juan Dela Cruz</td>
+		                          <td>2016-01-01</td>
+		                      </tr>
+												</div>
+											</div>
+
+											<ul class="nav nav-tabs">
+	                        <li class="active"><a href="#on_hold" data-toggle="tab">On Hold</a></li>
+	                        <li><a href="#hired" data-toggle="tab">Hired</a></li>
+	                        <li><a href="#on_trial" data-toggle="tab">On Trial</a></li>
+	                        <li><a href="#rejected_tab" data-toggle="tab">Rejected</a></li>
+	                    </ul>
+
+											<div class="tab-content">
+
+												<div id="on_hold" class="tab-pane fade in active">
+													<table class="table">
+					                    <thead>
+					                        <th>No.</th>
+					                        <th>Name</th>
+					                        <th>Date Added</th>
+					                    </thead>
+					                    <tr>
+					                        <td>1</td>
+					                        <td>Juan Dela Cruz</td>
+					                        <td>2016-01-01</td>
+					                    </tr>
+					                    <tr>
+					                        <td>2</td>
+					                        <td>Juan Dela Cruz</td>
+					                        <td>2016-01-01</td>
+					                    </tr>
+					                    <tr>
+					                        <td>3</td>
+					                        <td>Juan Dela Cruz</td>
+					                        <td>2016-01-01</td>
+					                    </tr>
+					                </table>
+												</div>
+
+												<div id="hired" class="tab-pane fade">
+	                        <table class="table">
+														<thead>
+																<th>No.</th>
+																<th>Name</th>
+																<th>Date Added</th>
+														</thead>
+														<tr>
+																<td>1</td>
+																<td>Juan Dela Cruz</td>
+																<td>2016-01-01</td>
+														</tr>
+														<tr>
+																<td>2</td>
+																<td>Juan Dela Cruz</td>
+																<td>2016-01-01</td>
+														</tr>
+														<tr>
+																<td>3</td>
+																<td>Juan Dela Cruz</td>
+																<td>2016-01-01</td>
+														</tr>
+	                        </table>
+                      	</div>
+
+												<div id="on_trial" class="tab-pane fade">
+		                      <table class="table">
+		                          <thead>
+		                              <th>No.</th>
+		                              <th>Name</th>
+		                              <th>Date Added</th>
+		                          </thead>
+		                          <tr>
+		                              <td>1</td>
+		                              <td>Juan Dela Cruz</td>
+		                              <td>2016-01-01</td>
+		                          </tr>
+		                          <tr>
+		                              <td>2</td>
+		                              <td>Juan Dela Cruz</td>
+		                              <td>2016-01-01</td>
+		                          </tr>
+		                          <tr>
+		                              <td>3</td>
+		                              <td>Juan Dela Cruz</td>
+		                              <td>2016-01-01</td>
+		                          </tr>
+		                      </table>
+	                    	</div>
+
+												<div id="rejected_tab" class="tab-pane fade">
+		                      <table class="table">
+		                        <thead>
+		                            <th>No.</th>
+		                            <th>Name</th>
+		                            <th>Date Added</th>
+		                        </thead>
+		                        <tr>
+		                            <td>1</td>
+		                            <td>Juan Dela Cruz</td>
+		                            <td>2016-01-01</td>
+		                        </tr>
+		                        <tr>
+		                            <td>2</td>
+		                            <td>Juan Dela Cruz</td>
+		                            <td>2016-01-01</td>
+		                        </tr>
+		                        <tr>
+		                            <td>3</td>
+		                            <td>Juan Dela Cruz</td>
+		                            <td>2016-01-01</td>
+		                        </tr>
+		                      </table>
+                    		</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div id="convert_ad" class="tab-pane fade">
+
+								<table class="table">
+									<tr>
+                      <td>Ad Title</td>
+                      <td><input type="text" class="form-control" placeholder="Enter Ad Title" /></td>
+                      <td></td><td></td><td></td><td></td>
+                  </tr>
+									<tr>
+                      <td>Lead</td>
+                      <td>Sample Lead</td>
+                      <td></td><td></td><td></td><td></td>
+                  </tr>
+									<tr>
+	                    <td>Category</td>
+	                    <td>
+	                        <select class="form-control">
+	                            <option>Select One</option>
+	                        </select>
+	                    </td>
+	                    <td></td><td></td><td></td><td></td>
+	                </tr>
+									<tr>
+	                    <td>Oursourcing Modal</td>
+	                    <td>
+	                        <select class="form-control">
+	                            <option>Select One</option>
+	                        </select>
+	                    </td>
+	                    <td></td><td></td><td></td><td></td>
+	                </tr>
+									<tr>
+                      <td>Company</td>
+                      <td>
+                          <select class="form-control">
+                              <option>Select One</option>
+                          </select>
+                      </td>
+                      <td></td><td></td><td></td><td></td>
+                  </tr>
+									<tr>
+                      <td>Heading</td>
+                      <td>
+                          <textarea id="heading" class="form-control init-summernote" rows="4" cols="5">
+                          Enter text here..</textarea>
+                      </td>
+                      <td></td><td></td><td></td><td></td>
+                  </tr>
+									<tr>
+                      <td>Status</td>
+                      <td>
+                          <select class="form-control">
+                              <option>Select One</option>
+                          </select>
+                      </td>
+                      <td></td><td></td><td></td><td></td>
+                  </tr>
+									<tr>
+                      <td>Show Status</td>
+                      <td>
+                          <select class="form-control">
+                              <option>Select One</option>
+                          </select>
+                      </td>
+                      <td></td><td></td><td></td><td></td>
+                  </tr>
+								</table>
+
+								<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5> Requirements (Must have)</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                      <textarea id="req_tasks" class="init-summernote"  >
+                        {{edit_data.required_skills}}
+                      </textarea>
+
+                    </div>
+                </div>
+
+								<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5> Requirements (Good to have) </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                      <textarea id="req_tasks" class="init-summernote">
+                        {{edit_data.required_tasks}}
+                      </textarea>
+                    </div>
+                </div>
+
+								<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5> Responsibilities </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                    </div>
+                </div>
+
+								<h3>History</h3>
+	              <table class="table">
+	              	<thead>
+	                  <th>User</th>
+	                  <th>User Type</th>
+	                  <th>Changes</th>
+	                  <th>Date</th>
+	                </thead>
+	                <tr ng-repeat="y in convertAdHistoryData">
+	                  <td>{{y.user}}</td>
+	                  <td>{{y.user_type}}</td>
+	                  <td>{{y.changes}}</td>
+	                  <td>{{y.date_added}}</td>
+	                </tr>
+	              </table>
+								<pagination
+                  ng-model="currentPagePag"
+                  total-items="convertAdHistoryTotal"
+                  max-size="maxSizePag"
+                  boundary-links="true">
+                </pagination>
+								<p>{{convertAdHistoryTotal}} total records.</p>
+								<div class="btn-update-convert">
+                    <button type="button" class="btn btn-primary btn-convert-ad">Create Ad</button>
+                    <button type="button" class="btn btn-warning btn-update-ad" >Update Ad</button>
+                </div>
+
+							</div>
+
+							<div id="preview_ad" class="tab-pane fade"><br/>
+								<div class="header-preview-ad">
+                    <h3>3D Modeler | Computer-aided Desginer</h3>
+                </div>
+								<h4>Job Details: </h4><br/>
+								<table class="table">
+									<tr>
+                      <td>Work Status: </td>
+                      <td><b>Full Time</b></td>
+                  </tr>
+									<tr>
+	                    <td>Level: </td>
+	                    <td><b>Expert</b></td>
+	                </tr>
+									<tr>
+                      <td>Work Schedule: </td>
+                      <td><b>Asia/Manila 5:00AM - 2:00PM</b></td>
+                  </tr>
+									<tr>
+                      <td>Work Location: </td>
+                      <td><b>Home Office</b></td>
+                  </tr>
+									<tr>
+                      <td>No. of staff needed: </td>
+                      <td><b>2</b></td>
+                  </tr>
+								</table>
+
+								<h4>Job Summary: </h4><br/>
+								<p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida, ante et posuere porta, risus neque bibendum tortor, sit amet molestie nunc eros mattis magna. Suspendisse faucibus pulvinar nibh, ut gravida neque porta eu. Mauris non eros aliquam, pulvinar est sit amet, venenatis neque. Aliquam dictum magna dui. Aenean finibus ullamcorper magna at aliquam. Cras efficitur urna quam, a egestas eros congue ac. Pellentesque malesuada placerat lectus vel dapibus. Curabitur in pharetra elit, sodales aliquet lacus. Cras luctus id mi ultricies fringilla. Nam vestibulum velit in sodales hendrerit. Ut tellus neque, pulvinar sit amet malesuada id, blandit eget arcu. Sed leo mauris, pretium sed commodo et, sodales ac tellus.
+                </p>
+
+								<p>
+		                In rhoncus consequat nulla eget varius. Suspendisse luctus felis quis lectus laoreet, non egestas lorem porttitor. Nunc vel diam vulputate, pharetra metus vitae, sollicitudin lectus. In ac tincidunt dui, sit amet tincidunt neque. Praesent ultrices eros at erat tristique dapibus. Mauris lobortis ultricies libero, quis tincidunt felis vulputate ut. Aenean nisi mauris, efficitur ut venenatis ut, lacinia eu metus.
+		            </p>
+
+								<br/> <h4>Requirements: </h4><br/>
+								<p><b>Must Have: </b></p>
+								<ul>
+                   <li>PHP (3 years experience)</li>
+                   <li>Cake PHP CMS Framework </li>
+                   <li>HTML</li>
+                   <li>CSS</li>
+                   <li>Java Script</li>
+                   <li>AJAX</li>
+                   <li>MYSQL Database (version control tools and developing web services)</li>
+                   <li>Bootstrap and responsive UI Technologies (can implement responsive Bootstrap designs)</li>
+                </ul>
+
+								<h4>Responsibilities: </h4><br/>
+								<ul>
+                   <li>Candidate must be able to maintain and enhance our current web build system (Cake PHP CMS Frame work).</li>
+                   <li>Candidate must be able to make any client amendments to front and backend of sites that have been already built using our web build system.</li>
+                   <li>Candidate must be able to contribute in all phases of the development lifecycle.</li>
+                   <li>Candidate must be able to develop and deploy new features to facilitate related procedures and tools if necessary.</li>
+                   <li>Candidate must be able to work and enhance internal website which uses Word press.</li>
+               </ul>
+
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

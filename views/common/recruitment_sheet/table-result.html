@@ -1,0 +1,101 @@
+<div class="col-lg-12">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>Job Order Sheet</h5>
+		</div>
+		<div class="ibox-content">
+      <table class="table">
+        <thead class="thead-inverse">
+            <!-- <th>No.</th> -->
+						<th colspan="3">Action</th>
+            <!-- <th>Act.</th>
+            <th>Details</th>
+            <th>History</th> -->
+            <th width="2%">Client</th>
+            <th>Tracking Code</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Recruiter</th>
+            <th>Staffing Consultant</th>
+            <th>Date Ordered</th>
+            <th>Date Activated</th>
+         </thead>
+         <tr ng-repeat="x in myData | startFrom:(currentPage -1 ) * maxSize | limitTo:maxSize">
+             <!-- <td ng-init="msg='{{ x.id  }}'">{{ x.id  }}</td> -->
+             <td>
+                <a href="#/recruiter/recruitment_sheet_details?tracker={{x.tracking_code}}" > <span class="glyphicon custom-glyph glyphicon-edit"></span> </a>
+            </td>
+            <td>
+              <a href="#" class="tooltip-cus">
+                  <div class="glyphicon custom-glyph glyphicon-zoom-in" ></div>
+                  <span>
+                      <center><strong>Job Order Details</strong></center><br />
+                      <table class='table table-condensed table-bordered'>
+                        <!-- <tr>
+                          <td>Tracking Code</td>
+                          <td>{{ x.tracking_code  }}</td>
+                        </tr>
+                        <tr>
+                          <td>Job Title</td>
+                          <td>{{ x.job_title  }}</td>
+                        </tr>
+                        <tr>
+                          <td>Client Name</td>
+                          <td>{{ x.client }} {{ x.data_type }}</td>
+                        </tr> -->
+                        <tr>
+                          <td>Timezone</td>
+                          <td>{{ x.working_timezone  }}</td>
+                        </tr>
+                        <tr>
+                          <td>Budget</td>
+                          <td>{{ x.budget_hourly  }}</td>
+                        </tr>
+                        <tr>
+                          <td>Working Model</td>
+                          <td>{{ x.job_loc_name  }}</td>
+                        </tr>
+                        <tr>
+                          <td>Staff Required</td>
+                          <td>{{ x.no_of_staff_needed  }}</td>
+                        </tr>
+                        <tr>
+                          <td>Date Ordered</td>
+                          <td>{{x.date_filled_up}}</td>
+                        </tr>
+                        <tr>
+                          <td>Order In Age</td>
+                          <td>{{ x.age  }} Business day(s) only</td>
+                        </tr>
+												<tr>
+                          <td>Source</td>
+                          <td></td>
+                        </tr>
+                      </table>
+                  </span>
+
+                </a>
+            </td>
+            <td>
+                <a href="#" data-toggle="modal" data-target="#myModalHistory"> <span class="glyphicon custom-glyph glyphicon-list"></span> </a>
+            </td>
+             <td>{{ x.client  }}</td>
+             <td>{{ x.tracking_code  }}</td>
+             <td>{{ x.job_title  }}</td>
+             <td>{{ x.order_status  }}</td>
+             <td>{{x.rec_name}}</td>
+             <td>{{x.sc_name}}</td>
+             <td>{{x.date_filled_up}}</td>
+             <td>{{ x.date_activated }}</td>
+         </tr>
+      </table>
+			<pagination
+	      ng-model="currentPage"
+	      total-items="myData.length"
+	      max-size="maxSize"
+	      boundary-links="true">
+	    </pagination>
+			<p>{{myData.length}} total records.</p>
+		</div>
+	</div>
+</div>

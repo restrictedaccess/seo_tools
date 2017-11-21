@@ -1,0 +1,130 @@
+<div id="modal-instant-email" class="modal inmodal in" tabindex="-1" role="dialog" aria-hidden="false" style="border-radius: 20px; display: block;">
+    <div class="modal-dialog" style="width:950px;border-radius:10px;">
+
+
+        <div class="modal-content animated bounceInRight">
+            <div name="form-instant-email" id="form-instant-email">
+
+
+                <!-- <input type="hidden" id="reference_id" name="reference_id" class="form-control" value="123367">
+                <input type="hidden" id="reference_table" name="reference_table" class="form-control" value="personal">
+
+                <input type="hidden" id="base_api_url" name="base_api_url" class="form-control" value="http://test.api.remotestaff.com.au">
+                <input type="hidden" id="admin_id" name="admin_id" class="form-control" value="167">
+                <input type="hidden" id="dept_id" name="dept_id" class="form-control" value="1">
+                <input type="hidden" id="admin_name" name="admin_name" class="form-control" value="Honey Lapidario">
+                  -->
+                <div class="modal-header" style="margin-top:-10px;line-height: 0;padding:15px 0px 10px 0px !important;">
+                    <!--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>-->
+                     <h4 class="modal-title">Instant Email</h4>
+                </div>
+
+
+                <div class="modal-body" style="height:980px;">
+
+
+
+
+                    <div class="row" style="margin-bottom:15px;">
+                        <div id="orig_modal" style="">
+
+                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                                    <label for="email_to">Template:</label>
+                                    <select ng-change="chooseTemplate()" ng-model="formData.emailTemplate" id="new_email_template" class="form-control" name="email_template">
+
+                                      <option value="">Blank Page</option>
+                                      <option value="profileCompletion">Profile Completion</option>
+                                      <option value="skypeInterview">Skype Interview</option>
+                                      <option value="holidayGreetings">Holiday Greetings</option>
+                                      <option value="applicationForEmployment">Application for employment</option>
+                                      <option value="followup">Followup</option>
+                                      <option value="availabilityV1">Availablity I</option>
+                                      <option value="availabilityV2">Availablity II</option>
+
+                                    </select>
+
+
+
+                                 </div>
+
+                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <label for="email_to">To:</label>
+                                            <input ng-model="formData.To" id="email_to" name="email_to" class="form-control" type="text" placeholder="ex.: sample@gmail.com">
+                                 </div>
+<!--
+
+                                 <form action="" class="dropzone" drop-zone="" id="file-dropzone">
+                                   <div style="float:right">
+                                       <p>Attach File :&nbsp;&nbsp;<input type="file" name="file" id="file" style="display:inline-block"></p>
+                                   </div>
+
+                                </form> -->
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;">
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <label for="email_field">Subject:</label>
+                                    <input ng-model="formData.Subject" id="email_field" name="email_field" class="form-control" type="text">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                          <div class="btn-group" style="margin-top:23px !important;">
+
+                              <label class="btn btn-primary" ng-model="formData.radioModel" btn-radio="'Personal'">Personal</label>
+                              <label class="btn btn-primary" ng-model="formData.radioModel" btn-radio="'Alternative'">Alternative</label>
+                              <label class="btn btn-primary" ng-model="formData.radioModel" btn-radio="'Staff'">Staff</label>
+                          </div>
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                    <div class="row" style="margin-bottom:15px;" >
+                         <div class="col-lg-12 m-b" style="background-color:white;">
+
+                                	<!-- <textarea style="height: 300px;width: 100%;" ng-model="formData.instantEmail"></textarea> -->
+                                  <div ng-change="checkVal()" summernote class="summernote"  ng-model="formData.instantemailtext" config="optionsInstantEmail" >
+
+                                  </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row"  style="margin-bottom:15px;">
+                        <div class="col-lg-1 m-b"></div>
+                      <div class="col-lg-10 m-b">
+                          <label>Attach Files:</label>
+                          <form action="" class="dropzone" drop-zone="instantemail_dropzone" id="file-dropzone" ></form>
+                      </div>
+
+                      <div class="col-lg-1 m-b"></div>
+
+                    </div>
+
+                  </div>
+
+                 <div class="modal-footer" style="">
+                    <button ng-click="closeInstatEmail()" id="close_instant_modal" type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button ng-click="sendEmail()" class="btn btn-primary" ng-disabled="formData.instantemailtext === null">Send Email</button>
+                </div>
+              </div>
+
+    </div>
+    </div>
+</div>

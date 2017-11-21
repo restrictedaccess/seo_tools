@@ -1,0 +1,64 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+			
+                <div class="dropdown profile-element" dropdown>
+                    <img alt="image" class="img-circle" src="/portal/images/Client.png" width="48" height="48"/>
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <!--<strong id="admin_name_placeholder" class="font-bold pull-left">{{admin_name}}</strong>-->
+
+                                    <strong class="font-bold pull-left">
+                                        <span id="admin_name_placeholder">
+
+                                        </span>
+                                    </strong>
+
+                                    <span class="text-muted text-xs block pull-left"> <b class="caret"></b></span>
+                                </span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a ui-sref="profile">Profile</a></li>
+                        <li><a ui-sref="contacts">Contacts</a></li>
+                        <li><a ui-sref="inbox">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li>
+                            <a ng-click="seoLogout()" ui-sref="admin.login" href="/admin/login">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                   	RS
+                </div>
+            </li>
+            
+            <li ng-class="{active: $state.includes('home')}">
+            	<a ui-sref="seo.dashboard"><i class="fa fa-home"></i> <span class="nav-label">{{ 'Dashboard' | translate }}</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('seo')}">
+                <a ui-sref="seo.categories"><i class="fa fa-book"></i> <span class="nav-label">{{ 'Categories' | translate }}</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('seo')}">
+                <a ui-sref="seo.skills"><i class="fa fa-pencil"></i> <span class="nav-label">{{ 'Skills' | translate }}</span></a>
+            </li>
+
+
+            
+            <!--<li ng-class="{active: $state.includes('seo')}">-->
+                <!--<a href="index.html"><i class="fa fa-group"></i> <span class="nav-label">{{ 'Job Orders' | translate }}</span> <span class="fa arrow"></span></a>-->
+                <!--&lt;!&ndash;<ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('dashboards')}">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li ui-sref-active="active"><a ui-sref="recruiter.recruitment_sheet">{{ 'Recruitment Sheet' | translate }}</a></li>     &ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="/portal/django/subcontractors/subcons/active">{{ 'List of Subcontractors' | translate }}</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--</li>-->
+        </ul>
+
+    </div>
+</nav>

@@ -1,0 +1,57 @@
+<!-- Modal -->
+<div id="assign_job_form_modal" 
+    class="modal fade in" 
+    tabindex="-1" 
+    role="dialog" 
+    aria-labelledby="prescreened_candidate_form_modal_label"
+    aria-hidden="false" 
+    data-backdrop="static" 
+    style="display: block;">
+
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h3 id="modal_header_title" class="modal-title text-left">Adding Job Title Form</h3>
+            </div>
+
+            <!--Content-->
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Assign Job: </label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="job_title" name="job_title" type="text" placeholder="Input Job Title.." ng-model="latest_job_title">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <button ng-click="close_modal()" 
+                        name="close" 
+                        id="close" 
+                        type="button" 
+                        class="btn btn-sm btn-danger" 
+                        data-dismiss="modal" 
+                        style="display: inline-block;">
+                        <i class="fa fa-times"></i> 
+                        Close
+                </button>
+
+                <button ng-click="addJobTitle()" 
+                        name="add_job_title_save_changes" 
+                        id="add_job_title_save_changes" 
+                        class="btn btn-sm btn-primary" 
+                        style="display: inline-block;">
+                        <i class="fa fa-floppy-o"></i> 
+                        Add Job Title
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div ng-controller="CandidatesController as candidates_page">
+    <div class="row wrapper border-bottom white-bg page-heading m-b" style="padding: 0px 10px 5px 10px;" ng-include="'views/common/candidates/search_bar.html'"></div>
+
+    <div class="row wrapper ibox m-b advance_search" style="padding: 0px 10px 5px 10px;" ng-include="'views/common/candidates/advanced_filters.html'"></div>
+    
+    <div class="tabs-container" style="margin-bottom:25px" ng-include="'views/common/candidates/search_result.html'"></div>
+
+    <a ng-click="addCandidate()" class="btn btn-primary btn-circle" style="position: fixed; bottom: 70px; right: 20px; z-index: 1000;">
+        <i class="fa fa-user-plus"></i>
+    </a>
+	<toaster-container></toaster-container>
+</div>

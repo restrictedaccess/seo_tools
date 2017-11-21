@@ -1,0 +1,112 @@
+<div ng-controller="SkillsController as skills_view">
+    <div ng-show="isLoggedIn">
+
+        <div class="row  border-bottom white-bg dashboard-header">
+            <div class="col-sm-12">
+                <h1>Skills</h1>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+
+
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Skills</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="#">Config option 1</a>
+                                        </li>
+                                        <li><a href="#">Config option 2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                            <input type="text" class="form-control"
+                                                   typeahead="skillsList as skillsList.skillName for skillsList in skillsList | filter:$viewValue"
+                                                   placeholder="Search a skill" ng-model="skillsSearchQuery">
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="input-group m-b"><span class="input-group-btn">-->
+                                            <!--<button type="button" class="btn btn-primary">Search</button> </span> <input-->
+                                            <!--name="skills" id="skills" type="text" placeholder="Enter a skill"-->
+                                            <!--ng-change="searchSkills()" ng-model="skillsSearchQuery"-->
+                                            <!--typeahead="filteredskillsList as filteredskillsList.skillName for filteredskillsList in filteredskillsList | filter:$viewValue"-->
+                                            <!--class="form-control">-->
+                                    <!--</div>-->
+
+                                    <br/>
+
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Skill Name</th>
+                                            <th>URL</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        <tr ng-repeat="skills in filteredskillsList | filter:skillsSearchQuery">
+                                            <td>{{skills.key}}</td>
+                                            <td>{{skills.skillName}}</td>
+                                            <td>{{skills.url}}</td>
+                                            <td>
+                                                <a href="" rel=""
+                                                   class="btn btn-warning btn-xs edit_employment_history_btn"
+                                                   type="button" ng-click="updateEmploymentHistory(n)"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a href="" rel=""
+                                                   class="btn btn-danger btn-xs delete_employment_history_btn"
+                                                   ng-click="deleteEmploymentHistory(n)"><i
+                                                        class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <pagination
+                                            ng-model="currentPage"
+                                            total-items="skillsList.length"
+                                            max-size="maxSize"
+                                            boundary-links="true">
+                                    </pagination>
+                                </div>
+
+
+                            </div>
+
+                            Total Items: {{skillsList.length}}
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <toaster-container></toaster-container>
+
+    </div>
+</div>

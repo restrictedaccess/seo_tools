@@ -1,0 +1,642 @@
+<style>
+    #category-accordion{
+        font-size: 1.1em;
+    }
+
+    #category-accordion a:hover{
+        text-decoration: underline;
+    }
+
+    .note-editor {
+        height: auto !important;
+        min-height: auto;
+    }
+
+    .note-resizebar{
+        display:none;
+    }
+
+    .font-bold-900{
+        font-weight: 900;
+    }
+
+</style>
+
+<div ng-controller="CategoriesController as categories_view">
+    <div ng-show="isLoggedIn">
+
+        <div class="row  border-bottom white-bg dashboard-header">
+            <div class="col-sm-12">
+                <h1>Categories</h1>
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-4">
+
+
+                            <div id="category-accordion" class="panel-group">
+
+                                <div ng-repeat="(key_category, category) in categoriesList" class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a ng-click="selectItemCategory(category)">
+                                                {{category.getName()}}
+                                                <i ng-class="{'fa fa-chevron-right pull-right': collapseCategoryList[{{category.getId()}}] === true, 'fa fa-chevron-down pull-right': collapseCategoryList[{{category.getId()}}] === false}"></i>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <!--<div collapse="isCollapsed">-->
+                                        <!--<div class="panel-body">-->
+                                            <!--Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <ul collapse="collapseCategoryList[{{category.getId()}}]" class="m-l list-unstyled" style="margin-left: 42px;">
+                                        <li ng-repeat="sub_category in category.subCategories" ng-class="isSubCategorySelected(sub_category)" style="margin-top: 1%;">
+                                            <a ng-click="selectItemSubCategory(sub_category)">
+                                                {{sub_category.getName()}}
+                                            </a>
+                                        </li>
+                                        <li class="m-t">
+                                            <form id="add_sub_category_form_{{category.getId()}}" ng-submit="addNewSubCategory(key_category)">
+                                                <div  class="input-group" style="width: 80%;">
+                                                    <input name="sub_category_{{category.getId()}}" id="sub_category_{{category.getId()}}" type="text" class="form-control"  placeholder="Add Sub Category" ng-model="categoryNewInputNamesList[category.getId()]" required />
+
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-secondary" type="submit">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </span>
+
+                                                </div>
+
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                <!--<div class="panel panel-default">-->
+                                    <!--<div data-toggle="collapse" data-parent="#accordion" data-target="#temp_id" class="panel-heading">-->
+                                        <!--<a>-->
+                                            <!--Web Development-->
+                                        <!--</a>-->
+                                        <!--<a class="collapse-link m-l">-->
+                                            <!--<i class="fa fa-chevron-right"></i>-->
+                                        <!--</a>-->
+
+                                    <!--</div>-->
+
+                                    <!--<ul id="temp_id" class="m-l collapse list-unstyled" style="margin-left: 42px">-->
+                                        <!--<li>-->
+                                            <!--<a>-->
+                                                <!--PHP Developer-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--ASP Developer-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--AngularJS Developer-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div ng-show="selectedItem.type === ''">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a class="btn btn-sm btn-success pull-right m-b" ng-click="selectItemCategory(null)">
+                                            <i class="fa fa-plus "></i> Add Category
+                                        </a>
+                                        <!--<label class="btn btn-warning btn-sm pull-right m-r">-->
+                                            <!--<i class="fa fa-upload"></i>  Upload CSV<input class="dropzone" drop-zone="config_dropzone_csv_upload" style="display:none; width: 100%;">-->
+                                        <!--</label>-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="selectedItem.type === 'category'">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a class="btn btn-sm btn-success pull-right m-b" ng-click="selectItemCategory(null)">
+                                            <i class="fa fa-plus "></i> Add Category
+                                        </a>
+                                        <!--<a class="btn btn-sm btn-warning pull-right m-b m-r" ng-click="uploadCSV()">-->
+                                            <!--<i class="fa fa-upload"></i> Upload CSV-->
+                                        <!--</a>-->
+                                        <!--<label class="btn btn-warning btn-sm pull-right m-r">-->
+                                            <!--<i class="fa fa-upload"></i>  Upload CSV<input class="dropzone" drop-zone="config_dropzone_csv_upload" style="display:none; width: 100%;">-->
+                                        <!--</label>-->
+                                        <h3>
+                                            Category: {{selectedItem.item.getDisplayName()}}
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="ibox">
+                                    <div class="ibox-content">
+                                        <form ng-submit="submitCategoryForm()" name="category_form" class="form-horizontal">
+                                            <div class="row">
+
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Category Name:<span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input name="name" required type="text" ng-model="selectedItem.item.name" class="form-control" />
+                                                                    <div class="row" ng-show="category_form.name.$valid == false">
+                                                                        <div class="col-lg-12">
+                                                                            <div  class="text-danger" style="margin:0px;">
+                                                                                Category Name is required
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Singular Name:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.item.singularName" class="form-control" />
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    URL Label:<span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input id="url" name="url" type="text" ng-model="selectedItem.item.url" class="form-control" required />
+                                                                    <div class="row" ng-show="category_form.url.$valid == false">
+                                                                        <div class="col-lg-12">
+                                                                            <div  class="text-danger" style="margin:0px;">
+                                                                                Url is required
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <!--<div class="col-lg-12">-->
+                                                            <!--<div class="form-group">-->
+                                                                <!--<label class="font-bold">-->
+                                                                    <!--Page Header:-->
+                                                                <!--</label>-->
+                                                                <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Title / Meta Title:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-maxlength="chars_data_title.limit" maxlength="{{chars_data_title.limit}}" ng-model="selectedItem.item.title" class="form-control" ng-change="limitTitle()" />
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 m-b">
+                                                                            {{chars_data_title.remaining}} characters remaining
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    ASL H1:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.item.asl_h1" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    ASL H2:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.item.asl_h2" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Status:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+
+                                                                    <select chosen ng-model="selectedItem.item.status" data-placeholder="Status" class="chosen-select form-control" style="display: block;"
+                                                                            ng-options="status for status in statusCategoryList">
+
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Page Description:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <div summernote class="summernote"
+                                                                         ng-model="selectedItem.item.pageDescription" config="optionSummernote">
+
+                                                                    </div>
+                                                                    <!--<textarea maxlength="160" rows="8" cols="71" class="form-control"-->
+                                                                              <!--ng-model="selectedItem.item.pageDescription" style="resize: none;"-->
+                                                                              <!--ng-change="limitPageDescription()">-->
+
+                                                                    <!--</textarea>-->
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Meta Keywords:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <textarea rows="8" cols="71" class="form-control"
+                                                                              ng-model="selectedItem.item.keywords" style="resize: none;">
+
+                                                                    </textarea>
+                                                                    <!--<div summernote class="summernote"-->
+                                                                         <!--ng-model="selectedItem.item.keywords" config="optionSummernote">-->
+
+                                                                    <!--</div>-->
+
+
+                                                                    <!--<textarea maxlength="160" rows="8" cols="71" class="form-control"-->
+                                                                              <!--ng-model="selectedItem.item.keywords" style="resize: none;"-->
+                                                                              <!--ng-change="limitKeywords()">-->
+
+                                                                <!--</textarea>-->
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Meta Description:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<div summernote class="summernote"-->
+                                                                         <!--ng-model="selectedItem.item.metaDescription" config="optionSummernote">-->
+
+                                                                    <!--</div>-->
+                                                                     <textarea rows="8" cols="71" class="form-control"
+                                                                               ng-model="selectedItem.item.metaDescription" style="resize: none;"
+                                                                               ng-change="limitMetaDescription()">
+
+                                                                    </textarea>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 m-b">
+                                                                            {{words_data_meta_description.remaining}} words remaining
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <button type="submit" class="btn btn-primary pull-right">
+                                                                <i class="fa fa-save "></i> Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div ng-show="selectedItem.type === 'sub_category'">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a class="btn btn-sm btn-success pull-right m-b" ng-click="selectItemCategory(null)">
+                                            <i class="fa fa-plus "></i> Add Category
+                                        </a>
+                                        <!--<a class="btn btn-sm btn-warning pull-right m-b m-r" ng-click="uploadCSV()">-->
+                                            <!--<i class="fa fa-upload "></i> Upload CSV-->
+                                        <!--</a>-->
+                                        <!--<label class="btn btn-warning btn-sm pull-right m-r">-->
+                                            <!--<i class="fa fa-upload"></i>  Upload CSV<input class="dropzone" drop-zone="config_dropzone_csv_upload" style="display:none; width: 100%;">-->
+                                        <!--</label>-->
+                                        <h3>
+                                            Sub Category: {{selectedItem.item.getDisplayName()}}
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="ibox">
+                                    <div class="ibox-content">
+
+                                        <form ng-submit="submitSubCategoryForm()" name="sub_category_form" class="form-horizontal">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Sub Category Name:<span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" name="name" ng-model="selectedItem.item.name" class="form-control" required />
+                                                                    <div class="row" ng-show="category_form.name.$valid == false">
+                                                                        <div class="col-lg-12">
+                                                                            <div  class="text-danger" style="margin:0px;">
+                                                                                Sub Category Name is required
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Singular Name:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.item.singularName" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    URL Label:<span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input id="url" name="url" type="text" ng-model="selectedItem.item.url" class="form-control" />
+                                                                    <div class="row" ng-show="category_form.url.$valid == false">
+                                                                        <div class="col-lg-12">
+                                                                            <div  class="text-danger" style="margin:0px;">
+                                                                                Url is required
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <!--<div class="col-lg-12">-->
+                                                            <!--<div class="form-group">-->
+                                                                <!--<label class="font-bold">-->
+                                                                    <!--Page Header:-->
+                                                                <!--</label>-->
+                                                                <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Title / Meta Title:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-maxlength="chars_data_title.limit" maxlength="{{chars_data_title.limit}}" ng-model="selectedItem.item.title" class="form-control" ng-change="limitTitle()" />
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 m-b">
+                                                                            {{chars_data_title.remaining}} characters remaining
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    ASL H1:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.item.asl_h1" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    ASL H2:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" ng-model="selectedItem.item.asl_h2" class="form-control" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Job Category:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+
+                                                                    <!--<select chosen ng-model="selectedItem.item.status" data-placeholder="Status" class="chosen-select form-control" style="display: block;"-->
+                                                                            <!--ng-options="status for status in statusSubCategoryList">-->
+
+                                                                    <!--</select>-->
+                                                                    <select ng-change="showPreviousCategory()" chosen ng-model="selectedItem.item.category" data-placeholder="Job Category" class="chosen-select form-control" style="display: block;"
+                                                                            ng-options="category as category.name for category in categoriesList track by category.id">
+
+                                                                    </select>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Status:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<input type="text" ng-model="selectedItem.item.pageHeader" class="form-control" />-->
+
+                                                                    <select chosen ng-model="selectedItem.item.status" data-placeholder="Status" class="chosen-select form-control" style="display: block;"
+                                                                            ng-options="status for status in statusSubCategoryList">
+
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Page Description:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <div summernote class="summernote"
+                                                                         ng-model="selectedItem.item.pageDescription" config="optionSummernote">
+
+                                                                    </div>
+
+                                                                    <!--<textarea maxlength="160" rows="8" cols="71" class="form-control"-->
+                                                                              <!--ng-model="selectedItem.item.pageDescription" style="resize: none;"-->
+                                                                              <!--ng-change="limitPageDescription()">-->
+                                                                    <!--</textarea>-->
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Meta Keywords:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <textarea rows="8" cols="71" class="form-control"
+                                                                              ng-model="selectedItem.item.keywords" style="resize: none;">
+                                                                    </textarea>
+
+                                                                    <!--<div summernote class="summernote"-->
+                                                                         <!--ng-model="selectedItem.item.keywords" config="optionSummernote">-->
+
+                                                                    <!--</div>-->
+
+
+
+                                                                    <!--<textarea maxlength="160" rows="8" cols="71" class="form-control"-->
+                                                                              <!--ng-model="selectedItem.item.keywords" style="resize: none;"-->
+                                                                              <!--ng-change="limitKeywords()">-->
+
+                                                                <!--</textarea>-->
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label class="font-bold control-label col-lg-3">
+                                                                    Meta Description:
+                                                                </label>
+                                                                <div class="col-lg-9">
+                                                                    <!--<div summernote class="summernote"-->
+                                                                         <!--ng-model="selectedItem.item.metaDescription" config="optionSummernote">-->
+
+                                                                    <!--</div>-->
+                                                                    <textarea rows="8" cols="71" class="form-control"
+                                                                              ng-model="selectedItem.item.metaDescription" style="resize: none;"
+                                                                              ng-change="limitMetaDescription()">
+
+                                                                    </textarea>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 m-b">
+                                                                            {{words_data_meta_description.remaining}} words remaining
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <button type="submit" class="btn btn-primary pull-right">
+                                                                <i class="fa fa-save "></i> Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <toaster-container></toaster-container>
+
+    </div>
+</div>

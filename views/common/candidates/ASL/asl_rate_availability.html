@@ -1,0 +1,162 @@
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h5 style="margin:4px 0px;">Please fill up timezone availability.</h5>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center" style="vertical-align: middle;">Country</th>
+                        <th class="text-center" style="vertical-align: middle;">Fulltime
+                            <small>(<i>FT</i>)</small>
+                        </th>
+                        <th class="text-center" style="vertical-align: middle;">Partime
+                            <small>(<i>PT</i>)</small>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><b>Australia</b> (<i>AU</i>)</small>
+                        </td>
+
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><input icheck type="checkbox" id="candidate_timezone_availability_full_time_au"
+                                          name="candidate_timezone_availability_full_time_au"
+                                          class="full_time_timezone form-control" ng-model="current_resume.auFullTimeCheck"/>
+                            </small>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><input icheck type="checkbox" id="candidate_timezone_availability_part_time_au"
+                                          name="candidate_timezone_availability_part_time_au" ng-model="current_resume.auParTimeCheck"
+                                          class="part_time_timezone form-control"/></small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><b>United Kingdom</b> (<i>UK</i>)</small>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><input icheck type="checkbox" id="candidate_timezone_availability_full_time_uk"
+                                          name="candidate_timezone_availability_full_time_uk" ng-model="current_resume.ukFullTimeCheck"
+                                          class="part_time_timezone form-control"/></small>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><input icheck type="checkbox" id="candidate_timezone_availability_part_time_uk"
+                                          name="candidate_timezone_availability_part_time_uk" ng-model="current_resume.ukParTimeCheck"
+                                          class="part_time_timezone form-control"/></small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><b>United States</b> (<i>US</i>)</small>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><input icheck type="checkbox" id="candidate_timezone_availability_full_time_us"
+                                          name="candidate_timezone_availability_full_time_us" ng-model="current_resume.usFullTimeCheck"
+                                          class="part_time_timezone form-control"/></small>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <small><input icheck type="checkbox" id="candidate_timezone_availability_part_time_us"
+                                          name="candidate_timezone_availability_part_time_us" ng-model="current_resume.usParTimeCheck"
+                                          class="part_time_timezone form-control"/></small>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h5 style="margin:4px 0px;">Please fill up ASL Rate.</h5>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="">
+                            <label for="candidate_full_time_product_id">
+                                <small>Full time rate:<span class="text-danger">*</span></small>
+                            </label>
+
+
+                            <select chosen class="chosen-select form-control" value="candidate.getStaffRate().getFullTimePrice()" ng-options="price as price.getLabel() for price in productPricesFullTime track by price.getId()" ng-model="current_resume.full_time_price"></select>
+                        </div>
+                        <div class="">
+                            <label for="candidate_part_time_product_id">
+                                <small>Part time rate:<span class="text-danger">*</span></small>
+                            </label>
+
+                            <select chosen id="candidate_part_time_product_id" name="candidate_part_time_product_id" class="chosen-select form-control" required="required" value="candidate.getStaffRate().getPartTimePrice()" ng-options="price as price.getLabel() for price in productPricesPartTime track by price.getId()" ng-model="current_resume.part_time_price">
+
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h5 style="margin:4px 0px;">Please fill up working availability status.</h5>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group" style="margin:0px;">
+                    <li class="list-group-item">
+                        <label>
+                            <small><input icheck type="radio" name="available_status" value="START_WORK_AFTER_NOTICE_PERIOD" ng-model="current_resume.availableStatus">&nbsp;&nbsp;I
+                                can start work after
+                                <input type="text" id="available_notice" name="available_notice" placeholder="Ex:(2)" ng-model="current_resume.availableNotice"
+                                       maxlength="8" size="8" value=""/> week(s) of notice period.
+                            </small>
+                        </label>
+                    </li>
+                    <li class="list-group-item">
+                        <label>
+                            <small><input icheck type="radio" name="available_status" value="START_WORK_AFTER_DATE" ng-model="current_resume.availableStatus">&nbsp;&nbsp;I
+                                can start work after
+                                <input type="text" id="aday" name="aday" placeholder="DD" maxlength="8" size="8" ng-model="current_resume.aday" class=""
+                                       value=""/> - <select id="amonth" name="amonth" ng-model="current_resume.amonth" class="">
+                                    <option></option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select> - <input type="text" id="ayear" name="ayear" class="datepicker-year" ng-model="current_resume.ayear"
+                                                   placeholder="YYYY" maxlength="8" size="8"
+                                                   value=""/></small>
+                        </label>
+                    </li>
+                    <li class="list-group-item">
+                        <label>
+                            <small><input icheck type="radio" name="available_status" value="NOT_ACTIVELY_LOOKING" ng-model="current_resume.availableStatus">&nbsp;&nbsp;I
+                                am not actively looking for a job now.
+                            </small>
+                        </label>
+                    </li>
+                    <li class="list-group-item">
+                        <label>
+                            <small><input icheck type="radio" name="available_status" value="WORK_IMMEDIATELY" ng-model="current_resume.availableStatus">&nbsp;&nbsp;Work
+                                Immediately
+                            </small>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

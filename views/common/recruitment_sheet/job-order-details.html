@@ -1,0 +1,163 @@
+<div class="col-lg-12">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>Job Order Sheet</h5>
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="ibox-content">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Job Order Details</div>
+						<div class="panel-body">
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+		                <h5><i class="fa fa-user"></i> Job Order Information</h5>
+		                <div class="ibox-tools">
+		                    <a class="collapse-link">
+		                        <i class="fa fa-chevron-up"></i>
+		                    </a>
+		                </div>
+		            </div>
+								<div class="ibox-content">
+									<table class="table">
+										<tr>
+		                    <th>Date Submitted: </th>
+		                    <td>{{read_data.registration_dates}}</td>
+		                </tr>
+		                <tr>
+		                    <th>Job Title: </th>
+		                    <td> {{read_data.sub_category_name}}</td>
+		                </tr>
+		                <tr>
+		                    <th>Level Of Expertise: </th>
+		                    <td>{{read_data.lvl_of_exprt}}</td>
+		                </tr>
+		                <tr>
+		                    <th>Number Of Staff Needed: </th>
+		                    <td>{{read_data.num_staff_req}}</td>
+		                </tr>
+		                <tr>
+		                    <th>Budget: </th>
+		                    <td>{{read_data.budget}}</td>
+		                </tr>
+		                <tr>
+		                    <th>Working Model: </th>
+		                    <td>{{read_data.job_loc_name}}</td>
+		                </tr>
+		                <tr>
+		                    <th>Timezone: </th>
+		                    <td>{{read_data.timezone}}</td>
+		                </tr>
+		            	</table>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-html5"></i> Required Skills</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+										<p>
+												{{read_data.required_skills}}
+										</p>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-check-circle"></i> Required Tasks</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+										<p>
+												{{read_data.responsibilities}}
+										</p>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+										<h5><i class="fa fa-gift"></i> Personal Soft Skills</h5>
+										<div class="ibox-tools">
+												<a class="collapse-link">
+														<i class="fa fa-chevron-up"></i>
+												</a>
+										</div>
+								</div>
+								<div class="ibox-content">
+										<p>
+												{{read_data.personal_soft_skills}}
+										</p>
+								</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+									<div class="ibox-title">
+											<h5><i class="fa fa-graduation-cap"></i> Educational Experience</h5>
+											<div class="ibox-tools">
+													<a class="collapse-link">
+															<i class="fa fa-chevron-up"></i>
+													</a>
+											</div>
+									</div>
+									<div class="ibox-content">
+											<p>
+													{{read_data.educ_experience}}
+											</p>
+									</div>
+							</div>
+
+							<div class="ibox float-e-margins">
+									<div class="ibox-title">
+											<h5><i class="fa fa-comments"></i> Additional Comments</h5>
+											<div class="ibox-tools">
+													<a class="collapse-link">
+															<i class="fa fa-chevron-up"></i>
+													</a>
+											</div>
+									</div>
+									<div class="ibox-content">
+											<p>
+													{{read_data.add_comments}}
+											</p>
+									</div>
+							</div>
+
+						</div>
+					</div>
+
+			</div>
+		</div>
+
+		<div class="col-lg-6 col-md-6">
+			<div class="ibox-content">
+				<ul class="nav nav-tabs">
+          <li class="active"><a href="#jo_details" data-toggle="tab">  Job Order Details</a></li>
+          <li><a href="#convert_ad" data-toggle="tab">Create Ad</a></li>
+          <li><a href="#preview_ad" data-toggle="tab">Preview Ad</a></li>
+       	</ul>
+
+				<div class="tab-content">
+					<div id="jo_details" class="tab-pane fade in active">
+						<div class="row" ng-include="'views/common/recruitment_sheet/details/job-order-tab.html'"></div>
+					</div>
+					<div id="convert_ad" class="tab-pane fade">
+						<div class="row" ng-include="'views/common/recruitment_sheet/details/create-ad-tab.html'"></div>
+					</div>
+					<div id="preview_ad" class="tab-pane fade">
+						<div class="row" ng-include="'views/common/recruitment_sheet/details/preview-ad-tab.html'"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

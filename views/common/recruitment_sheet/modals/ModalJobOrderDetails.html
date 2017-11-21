@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edit Job Order Details</h3>
+</div>
+<div class="modal-body">
+  <table class="table">
+        <tr>
+            <th>Order Status: </th>
+            <td>
+              <select chosen class="form-control" ng-change="checkval_status_change()" ng-model="edit_data.STATUS2" ng-options="status_items.id as status_items.name for status_items in status_items">
+              </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Work Status: </th>
+            <td>
+              <select chosen class="form-control" ng-change="checkval_jobtype_change()" ng-model="edit_data.job_type_name2" ng-options="work_status_items.id as work_status_items.name for work_status_items in work_status_items">
+              </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Assigned Recruiter: </th>
+            <td>
+              <select chosen class="form-control" ng-model="edit_data.rec_id" ng-change="checkval()" ng-options="rec_list.admin_id as rec_list.admin_fname +' '+ rec_list.admin_lname for rec_list in rec_list">
+              </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Assigned Staffing Consultant: </th>
+            <td>
+              <select chosen class="form-control" ng-change="checkval()" ng-model="edit_data.sc_id" ng-options="staff_list.admin_id as staff_list.admin_fname for staff_list in staff_list">
+              </select>
+              <!-- <select chosen multiple class="form-control" ng-model="edit_data.sc_id">
+                <option ng-selected="selected" value="edit_data.sc_id">{{edit_data.sc_name}}</option>
+                <option ng-repeat="c in staff_list" value="{{c.admin_id}}">{{c.admin_fname}} {{c.admin_lname}}</option>
+              </select> -->
+            </td>
+        </tr>
+        <tr>
+            <th>Timezone: </th>
+            <td>
+                <select chosen id="timezone" name="timezone" class="form-control" ng-model="edit_data.timezone_id" ng-options="timezone_list.id as timezone_list.timezone for timezone_list in timezone_list">
+							</select>
+            </td>
+        </tr>
+        <tr>
+            <th>Start Work Time: </th>
+            <td>
+
+               <input type="text" class="form-control clockpicker"  ng-model="edit_data.worktime_start"/>
+            </td>
+        </tr>
+        <tr>
+            <th>End Work Time: </th>
+            <td>
+               <input type="text" class="form-control clockpicker" ng-model="edit_data.worktime_end"  />
+            </td>
+        </tr>
+        <tr>
+            <th>Budget: </th>
+            <td>
+                <input type="text" class="form-control" ng-model="edit_data.budget" />
+           </td>
+        </tr>
+        <tr>
+            <th>Working Model: </th>
+            <td>
+              <select chosen class="form-control" ng-change="checkval_jobloc_change()" ng-model="edit_data.job_loc_name2" ng-options="working_model_items.id as working_model_items.name for working_model_items in working_model_items">
+              </select>
+             </td>
+        </tr>
+
+        <tr>
+            <th>Level Of Expertise: </th>
+            <td>
+              <select chosen class="form-control" ng-change="checkval_lvl_of_exprt()"  ng-model="edit_data.lvl_of_exprt2" ng-options="lvl_of_exprt_items.id as lvl_of_exprt_items.name for lvl_of_exprt_items in lvl_of_exprt_items">
+              </select>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="save_updated()">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

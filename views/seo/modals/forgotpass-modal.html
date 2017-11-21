@@ -1,0 +1,52 @@
+<div class="modal fade in" id="forgot_password_modal" role="dialog" style="display: block; padding-right: 17px;" aria-hidden="false">
+
+    <div class="modal-dialog modal-md center-block">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+
+                <h4 class="modal-title">Reset Password</h4>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-3 text-center">
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <form ng-submit="forgotPasswordFormSubmit()" method="POST">
+                            <input name="is_admin" value="true" type="hidden">
+                            <div class="form-group">
+                                <input ng-model="forgotPassword.email" id="reset-password-email" type="email" class="form-control" name="email" placeholder="Email" required="">
+                            </div>
+
+                            <div ng-show="forgotPassword.hasErrors()" class="form-group alert alert-danger text-center">
+                                <p ng-repeat="error in forgotPassword.getErrors()">
+                                    {{error}}
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success block full-width m-b">Send Request</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-3 text-center">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button ng-click="close_modal()" type="button" class="btn btn-danger">
+                    Cancel
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

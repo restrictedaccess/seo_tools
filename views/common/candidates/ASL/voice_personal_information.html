@@ -1,0 +1,53 @@
+<table class="table table-striped table-bordered table-hover table-condensed" style="margin:0px;">
+    <thead>
+    <tr>
+        <th class="text-center" style="vertical-align: middle;">Voice Record</th>
+        <th class="text-center" style="vertical-align: middle; width: 20%;display: none;">
+            <input name="resume[personal_information][voice_record]" type="checkbox" class="i-checks" checked="checked" >
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="text-center" colspan="2" style="vertical-align: middle;">
+
+            <div ng-if="current_source_voice === null" class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-danger text-center" style="margin:0px;">
+                        <small  class=""><b>no voice record</b></small>
+                    </div>
+                </div>
+            </div>
+            <audio ng-if="current_source_voice !== null" id="voice_preview" preload="none" controls="" style="width: 100%;">
+
+                <source ng-src="{{current_source_voice}}">
+            </audio>
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <span class="help-block" style="margin-bottom: 0px;"><small><b>Note:</b><i> Max file upload size: 5MB.</i></small></span>
+            <div class="input-group">
+                <label class="btn btn-primary btn-file input-group-addon">
+                    <i class="fa fa-search"></i> <input class="dropzone" drop-zone="config_dropzone_voice" id="voice-dropzone" style="display:none; width: 100%;">
+                </label>
+                <input ng-model="current_resume.voice_to_upload.name" id="voice_text" name="voice_text" type="text" class="form-control file_text" readonly="" placeholder="voice record">
+                <span class="input-group-btn">
+                    <span ng-click="revertToPreviousVoice()" class="btn btn-default del_file" data-type="voice">
+                        <i class="fa fa-refresh"></i>
+                    </span>
+                </span>
+            </div>
+            <!--
+            <div class="row">
+                <div class="col-lg-12 text-right">
+                    <a ng-click="uploadVoice(true)" class="btn btn-success">Upload Voice</a>
+                </div>
+            </div>
+            -->
+            <span class="help-block" style="margin-bottom: 0px;"><small><i>Accepted format : mp3,wma,wav,mpeg</i></small></span>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,294 @@
+<div class="panel-body">
+    <div class="row" style="margin:0px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-success" style="margin: 0px;">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left">
+                            <h5 style="margin:4px 0px;">Employment history</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right" ng-show="showFormBtn">
+                            <button class="btn btn-xs btn-warning add_employment_history_btn" type="button" ng-click="showForm()"><i
+                                    class="fa fa-plus"></i> Add employment history
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="employment_history_content" class="panel-body" style="padding:10px; margin:0px; width:100%;">
+                    <div id="employment_history_container" class="full-height-scroll" style="max-height:290px;" ng-show="showEmpListFlag">
+                        <p>
+                            <small><b>Note</b>: <i>Please hover text or icon to see full information. Each employment
+                                history can be re-arrange.</i></small>
+                        </p>
+
+                        <table class="table table-striped table-bordered table-hover table-condensed nested_sortable" style="margin:0px;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th class="text-center" style="vertical-align: middle;">Industry</th>
+                                    <th class="text-center" style="vertical-align: middle;">Position</th>
+                                    <th class="text-center" style="vertical-align: middle;">Duties</th>
+                                    <th class="text-center" style="vertical-align: middle;">Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody data-candidate-id="" class="dragabblePannels" ui-sortable="sortableOptions">
+
+                                <tr id="employment_history_" ng-repeat="history in candidate.getEmploymentHistory()">
+                                    <td class="text-center" style="vertical-align: middle;"><i class="fa fa-arrows"></i>
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle;"><input icheck ng-model="n.empHistoryInstance.showToResume" name="resume[employment_history][]"
+                                            type="checkbox" class="form-control" value=""></td>
+                                    <td class="text-center categorize-candidate-tooltip" style="vertical-align: middle;">
+
+                                        <small>
+                                        <!--<a href="#" data-toggle="tooltip" data-html="true" data-placement="top"-->
+                                           <!--data-original-title="<p style='font-size:10px; margin:0px; text-align:justify;'></p>">-->
+
+                                        <!--</a>-->
+
+                                        <span data-tooltip-html-unsafe="" data-tooltip-placement="right" ng-if="history.industry.name">
+                                               {{history.industry.name}} 
+                                            </span>
+
+                                            <span data-tooltip-html-unsafe="" data-tooltip-placement="right" ng-if="!history.industry.name">
+                                               {{history.industry}} 
+                                            </span>
+
+                                            
+
+                                    </small>
+                                    </td>
+                                    <td class="text-center categorize-candidate-tooltip" style="vertical-align: middle;">
+                                        <small>
+                                        <!--<a href="#" data-toggle="tooltip" data-html="true" data-placement="top"-->
+                                           <!--data-original-title="<p style='font-size:10px; margin:0px; text-align:justify;'></p>">-->
+                                            <!--{{n.position}}-->
+                                        <!--</a>-->
+                                        <span data-tooltip-html-unsafe="{{history.position}}" data-tooltip-placement="right">
+                                                {{history.position}}
+                                            </span>
+                                    </small>
+                                    </td>
+                                    <td class="categorize-candidate-tooltip" style="vertical-align: middle;">
+
+                                        <a href="#" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="<p style='font-size:10px; margin:0px; text-align:justify;'></p>">
+                                            <div class="text-center">
+                                                <span data-tooltip-html-unsafe="{{history.duties}}" data-tooltip-placement="right">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            </div>
+
+                                        </a>
+
+                                        <!--<a href="" data-toggle="tooltip" title="{{n.duties}}"><i class="fa fa-user"></i></a>-->
+
+
+
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle;">
+                                        <small>
+                                        {{history.periodFrom}} - {{history.periodTo}}
+                                    </small>
+                                    </td>
+                                    <td class="text-center" style="vertical-align: middle;">
+                                        <a href="" rel="" class="btn btn-warning btn-xs edit_employment_history_btn" type="button" ng-click="updateEmploymentHistory(n)"><i class="fa fa-pencil"></i></a>
+                                        <a href="" rel="" class="btn btn-danger btn-xs delete_employment_history_btn" ng-click="deleteEmploymentHistory(n)"><i
+                                            class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <div class="alert alert-danger text-center" style="margin:0px;" ng-if="tempEmploymentHistoryList.length == 0">
+                            <small>No employment history.</small>
+                        </div>
+                    </div>
+
+                    <div id="employment_history_form_container" ng-show="showFormFlag">
+                        <h5>Please fill up employment history.</h5>
+                        <input type="hidden" id="employment_history_id" name="employment_history_id" value="0">
+                        <table class="table table-bordered table-condensed" style="margin:0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="company_name">
+                                        <small>Company name:<span class="text-danger">*</span></small>
+                                    </label>
+                                        <input type="text" name="company_name" id="company_name" class="form-control" ng-model="newEmploymentHistory.companyName"
+                                            style="font-size: 10px;" value="">
+                                    </td>
+                                    <td>
+                                        <label for="position">
+                                        <small>Position title:<span class="text-danger">*</span></small>
+                                    </label>
+                                        <input type="text" name="position" id="position" class="form-control" ng-model="newEmploymentHistory.position" style="font-size: 10px;"
+                                            value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label for="industry_id">Industry:</label>
+                                        <select chosen class="chosen-select-no-single languages_data_holder form-control" data-placeholder="Industries" ng-options="item as item.name for item in industriesFilterDefaults track by item.name"
+                                            ng-model="newEmploymentHistory.industry">
+                                    </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>
+                                        <small>Employment period:<span class="text-danger">*</span></small>
+                                    </label>
+                                        <span id="datepicker" class="input-daterange input-group" style="width: 100%;">
+
+							<input date-time type="text" class="form-control datepicker-fulldate" name="employment_period_from"
+                                   ng-model="newEmploymentHistory.periodFrom"
+                                   id="employment_period_from" placeholder="Date start"
+                                   style="font-size: 10px;" value="" view="month" auto-close="true" min-view="month" format="MMM YYYY" readonly="readonly">
+
+
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+                                        <input date-time type="text" class="form-control datepicker-fulldate" name="employment_period_to" ng-model="newEmploymentHistory.periodTo"
+                                            id="employment_period_to" placeholder="Date end" style="font-size: 10px;" value=""
+                                            view="month" auto-close="true" min-view="month" format="MMM YYYY" readonly="readonly">
+
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label for="duties">
+                                        <small>Responsibilities / Achievements:<span class="text-danger">*</span>
+                                        </small>
+                                    </label>
+
+                                        <div ng-change="checkifVal()" summernote class="summernote" ng-model="newEmploymentHistory.duties" config="optionsAddEval">
+
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-right" ng-show="!isUpdateEmpHis">
+                                        <button id="save_employment_history_btn" name="save_employment_history_btn" ng-click="saveEmploymentHistory(candidate)" type="button"
+                                            class="btn btn-primary btn-xs save_employment_history_btn"><i
+                                            class="fa fa-floppy-o"></i> Save
+                                    </button>
+                                        <button id="cancel_employment_history_btn" name="cancel_employment_history_btn" ng-click="cancelBtn()" type="button" class="btn btn-danger btn-xs cancel_employment_history_btn"><i
+                                            class="fa fa-times"></i> Cancel
+                                    </button>
+                                    </td>
+                                    <td colspan="2" class="text-right" ng-show="isUpdateEmpHis">
+                                        <button id="save_employment_history_btn" name="save_employment_history_btn" ng-click="updateSaveEmploymentHistory()" type="button"
+                                            class="btn btn-primary btn-xs save_employment_history_btn"><i
+                                            class="fa fa-floppy-o"></i> Update
+                                    </button>
+                                        <button id="cancel_employment_history_btn" name="cancel_employment_history_btn" ng-click="cancelBtn()" type="button" class="btn btn-danger btn-xs cancel_employment_history_btn"><i
+                                            class="fa fa-times"></i> Cancel
+                                    </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .help-tip {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            text-align: center;
+            background-color: #BCDBEA;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 14px;
+            line-height: 26px;
+            cursor: default;
+        }
+        
+        .help-tip:before {
+            content: '?';
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .help-tip:hover p {
+            display: block;
+            transform-origin: 100% 0%;
+            -webkit-animation: fadeIn 0.3s ease-in-out;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .help-tip p {
+            /* The tooltip */
+            display: none;
+            text-align: left;
+            background-color: #1E2021;
+            padding: 20px;
+            width: 300px;
+            position: absolute;
+            border-radius: 3px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            right: -4px;
+            color: #FFF;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .help-tip p:before {
+            /* The pointer of the tooltip */
+            position: absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-bottom-color: #1E2021;
+            right: 10px;
+            top: -12px;
+        }
+        
+        .help-tip p:after {
+            /* Prevents the tooltip from being hidden */
+            width: 100%;
+            height: 40px;
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 0;
+        }
+        /* CSS animation */
+        
+        @-webkit-keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.6);
+            }
+            100% {
+                opacity: 100%;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100%;
+            }
+        }
+        
+        .dyn-height {
+            width: 100px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+    </style>

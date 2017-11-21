@@ -1,0 +1,113 @@
+<form" id="asl_resume_form" class="form-horizontal" >
+    <input id="type" name="type" value="categorize_step_3" type="hidden">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right preview_resume_button_placeholder">
+            <a href="/available-staff-resume/{{candidate_to_create_resume.getId()}}" target="_blank" class="btn btn-xs btn-info" style="margin:10px 0px;"><i class="fa fa-eye"></i> Preview Resume </a>
+        </div>
+    </div>
+
+    <tabset class="tabs-left tabbable">
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-user"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/personal_information.html'">
+
+            </div>
+
+        </tab>
+
+
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-briefcase"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/employment_history.html'">
+
+            </div>
+
+
+        </tab>
+
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-wrench"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/skills.html'">
+
+            </div>
+
+
+        </tab>
+
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-language"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/languages.html'">
+
+            </div>
+
+
+        </tab>
+
+
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-pencil-square-o"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/test_taken.html'">
+
+            </div>
+
+
+        </tab>
+
+
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-graduation-cap"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/education.html'">
+
+            </div>
+
+
+        </tab>
+
+
+        <tab>
+
+            <tab-heading>
+                <i class="fa fa-file-o"></i>
+            </tab-heading>
+
+            <div class="panel-body" ng-include="'views/common/candidates/ASL/sample_work.html'">
+
+            </div>
+
+
+        </tab>
+
+
+    </tabset>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+            <a ng-click="close_modal()" id="categorize_step_3_close" name="categorize_step_3_close" type="button" class="btn btn-sm btn-danger" data-dismiss="modal" style="margin: 20px 0px 0px;"><i class="fa fa-times"></i> Close</a>
+            <a ng-click="createCandidateResume(true)" name="categorize_step_3_save_changes" id="categorize_step_3_save_changes" type="submit" class="btn btn-sm btn-primary" style="margin:20px 0px 0px;"><i class="fa fa-floppy-o"></i> Generate Resume</a>
+        </div>
+    </div>
+</form>

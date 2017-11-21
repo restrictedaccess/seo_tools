@@ -1,0 +1,102 @@
+<div class="inmodal">
+	<div class="modal-header">
+		<i class="fa fa-users modal-icon"></i>
+		<h4 class="modal-title">Create Candidate Resume</h4>
+		<small class="font-bold">All fields are required.</small>
+	</div>
+	<div class="modal-body">
+		<!--
+		<div class="row">
+			<div ng-if="showErrors" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-danger">
+				<ul>
+					<li ng-repeat="error in errors">{{error}}</li>
+				</ul>
+			</div>
+		</div>
+		-->
+        
+		<div class="row">
+
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<form name="create_candidate_form">
+					<input type="hidden" id="type" name="type" value="add_candidate">
+					<div class="form-group">
+						<label for="fname">Firstname:<span class="text-danger">*</span></label>
+
+						<input name="fname" type="text" class="form-control" ng-model="candidate.first_name" required>
+
+						<div class="row"  ng-show="create_candidate_form.fname.$valid == false">
+							<div class="col-lg-12">
+								<div  class="text-danger" style="margin:0px;">
+									First Name is Required
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="form-group">
+						<label for="lname">Lastname:<span class="text-danger">*</span></label>
+
+						<input name="lname" type="text" class="form-control" ng-model="candidate.last_name" required>
+
+						<div class="row"  ng-show="create_candidate_form.lname.$valid == false">
+							<div class="col-lg-12">
+								<div  class="text-danger" style="margin:0px;">
+									Last Name is Required
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="contact_no">Mobile Number:<span class="text-danger">*</span></label>
+
+						<input name="contact_no" type="number" class="form-control" ng-model="candidate.mobile_number" required>
+						<div class="row"  ng-show="create_candidate_form.contact_no.$valid == false">
+							<div class="col-lg-12">
+								<div  class="text-danger" style="margin:0px;">
+									Mobile Number is Required
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:<span class="text-danger">*</span></label>
+
+						<input name="email" type="email" class="form-control" ng-model="candidate.email" required>
+						<div class="row"  ng-show="create_candidate_form.email.$valid == false">
+							<div class="col-lg-12">
+								<div  class="text-danger" style="margin:0px;">
+									Must be a valid e-mail
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="latest_job_title">Latest job title:<span class="text-danger">*</span></label>
+
+						<input name="latest_job_title" type="text" class="form-control" ng-model="candidate.latest_job_title" required>
+						<div class="row"  ng-show="create_candidate_form.latest_job_title.$valid == false">
+							<div class="col-lg-12">
+								<div  class="text-danger" style="margin:0px;">
+									Latest Job Title is Required
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<div class="form-group">
+					<label for="cv">CV:<span class="text-danger">*</span></label>
+					<form action="" class="dropzone" drop-zone="config_dropzone" id="file-dropzone" ></form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button ng-click="close()" type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+		<button ng-click="save()" type="submit" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Save Candidate</button>
+	</div>
+</div>
